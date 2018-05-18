@@ -1,6 +1,6 @@
 # 第一章 概述 Introduction
 
-## 1.0 1.0 知识产权政策 Intellectual property rights policy
+## 1.0 知识产权政策 Intellectual property rights policy
 
 此公开评审草案的发布基于 [OASIS IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr) 的 [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) 模式。
 
@@ -283,15 +283,15 @@ UTF-8编码序列0XEF 0xBB 0xBF总是被解释为U+FEFF（零宽度非换行空�
 
 > 非负整数 X 使用变长编码方案的算法如下：
 
-> do
->    encodedByte = X MOD 128
->    X = X DIV 128
->    // if there are more data to encode, set the top bit of this byte
->    if (X > 0)
->       encodedByte = encodedByte OR 128
->    endif
->    'output' encodedByte
-> while (X > 0)
+> do <br>
+> 　　encodedByte = X MOD 128 <br>
+> 　　X = X DIV 128 <br>
+> 　　// if there are more data to encode, set the top bit of this byte <br>
+> 　　if (X > 0) <br>
+> 　　　　encodedByte = encodedByte OR 128 <br>
+> 　　endif <br>
+> 　　'output' encodedByte <br>
+> while (X > 0) <br>
 
 MOD是模运算，DIV是整数除法，OR是位操作或（C语言中分别是%，/，|）。
 
@@ -299,15 +299,15 @@ MOD是模运算，DIV是整数除法，OR是位操作或（C语言中分别是%�
 
 剩余长度字段的解码算法如下：
 
-> multiplier = 1
-> value = 0
-> do
->    encodedByte = 'next byte from stream' 
->    value += (encodedByte AND 127) * multiplier
->    if (multiplier > 128*128*128)
->       throw Error(Malformed Variable Byte Integer)
->    multiplier *= 128
-> while ((encodedByte AND 128) != 0)
+> multiplier = 1 <br>
+> value = 0 <br>
+> do <br>
+> 　　encodedByte = 'next byte from stream' <br>
+> 　　value += (encodedByte AND 127) * multiplier <br>
+> 　　if (multiplier > 128*128*128) <br>
+> 　　　　throw Error(Malformed Variable Byte Integer) <br>
+> 　　multiplier *= 128 <br>
+> while ((encodedByte AND 128) != 0) <br>
 
 > AND 是位操作与（C 语言中的&）
 
@@ -335,14 +335,15 @@ MQTT客户端和服务端实现应该提供认证、授权和安全通信功能�
 
 ### 1.8.1 MQTT v3.1.1
 
-MQTT v3.1.1 是首个OASIS标准版本MQTT \[MQTTV311\]。
+MQTT v3.1.1 是首个OASIS标准版本MQTT **\[MQTTV311\]**。
+
 MQTT v3.1.1也是ISO/IEC 20922:2016 \[ISO20922\] 标准。
 
 ### 1.8.2 MQTT v5.0
 
 MQTT v5.0 在保持MQTT核心不变的基础上添加了大量的新功能。这些功能的主要目标如下：
 - 	进一步支持大规模可扩展系统
-- 	改进的错误报告Improved error reporting
+- 	改进的错误报告
 - 	规范化包括容量探索和请求响应在内的通用模式
 - 	包括用户属性在内的可扩展机制
 - 	改进性能并支持小型客户端
