@@ -81,7 +81,7 @@ MQTT是一个客户端服务端架构的发布/订阅模式的消息传输协议
 
 技术委员会成员对本规范的评论应该发送到技术委员会的邮件列表。其他人应该发送评论到技术委员会的公共评论列表，方法是点击技术委员会网站的 [发送评论](https://www.oasis-open.org/committees/comments/index.php?wg_abbrev=mqtt) 按钮，网页地址是 <https://www.oasis-open.org/committees/mqtt/> 。
 
-本规范草案的发布基于 [OASIS知识产权政策](https://www.oasis-open.org/policies-guidelines/ipr) 的 [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) 模式。关于实现本规范必不可少的任何专利是否已公开，以及其它的专利许可条款相关的信息，请参考技术委员会网站的知识产权部分（(<https://www.oasis-open.org/committees/mqtt/ipr.php>）。
+本规范草案的发布基于 [OASIS知识产权政策](https://www.oasis-open.org/policies-guidelines/ipr) 的 [Non-Assertion](https://www.oasis-open.org/policies-guidelines/ipr#Non-Assertion-Mode) 模式。关于实现本规范必不可少的任何专利是否已公开，以及其它的专利许可条款相关的信息，请参考技术委员会网站的知识产权部分（<https://www.oasis-open.org/committees/mqtt/ipr.php>）。
 
 ### 引用格式（Citation format）：
 
