@@ -2,7 +2,7 @@
 
 by [hui6075](https://github.com/hui6075)
 
-**最新版本: v0.0.1 2018-05-18** (部分3.3.1版本内容翻译引用 [@mcxiaoke](https://github.com/mcxiaoke))
+**最新版本: v0.0.1 2018-05-18** (部分3.3.1版本内容翻译引用 [@mcxiaoke](https://github.com/mcxiaoke/mqtt))
 
 ## 文档地址
 
