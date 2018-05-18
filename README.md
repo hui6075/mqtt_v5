@@ -2,7 +2,7 @@
 
 by [hui6075](https://github.com/hui6075)
 
-**最新版本: v0.0.1 2018-05-18** (部分3.3.1版本内容翻译引用 [@mcxiaoke](https://github.com/mcxiaoke)
+**最新版本: v0.0.1 2018-05-18** (部分3.3.1版本内容翻译引用 [@mcxiaoke](https://github.com/mcxiaoke))
 
 ## 文档地址
 
@@ -17,7 +17,7 @@ MQTT协议5.0版本在3.1.1版本的基础上增加了会话/消息延时功能�
 
 **发现任何翻译问题或格式问题欢迎提PR帮忙完善。**
 
-- [说明](README.md)
+- [项目自述](README.md)
 - [前言]
 - [目录]
 - [第一章 - MQTT介绍]
@@ -53,10 +53,10 @@ MQTT协议5.0版本在3.1.1版本的基础上增加了会话/消息延时功能�
 
 文档|链接
 ----|----
-中文版 Docx | [MQTT 3.1.1 中文版](https://github.com/hui6075/mqtt_v5/blob/master/protocol/mqtt-v5.0-zh_cn.docx)
-中文版 PDF | [MQTT 3.1.1 中文版](https://github.com/hui6075/mqtt_v5/blob/master/protocol/mqtt-v5.0-zh_cn.pdf)
-英文版 HTML | [MQTT Version 3.1.1](http://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html)
-英文版 PDF | [MQTT Version 3.1.1](http://docs.oasis-open.org/mqtt/mqtt/v5.0/cs01/mqtt-v5.0-cs01.pdf)
+中文版 Docx | [MQTT v5.0 草案中文版](https://github.com/hui6075/mqtt_v5/blob/master/protocol/mqtt-v5.0-zh_cn.docx)
+中文版 PDF | [MQTT v5.0 草案中文版](https://github.com/hui6075/mqtt_v5/blob/master/protocol/mqtt-v5.0-zh_cn.pdf)
+英文版 HTML | [MQTT Version 5.0 cs01](http://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html)
+英文版 PDF | [MQTT Version 5.0 cs01](http://docs.oasis-open.org/mqtt/mqtt/v5.0/cs01/mqtt-v5.0-cs01.pdf)
 
 
 ## 许可协议
