@@ -1,6 +1,6 @@
 # MQTT协议5.0中文版
 
-* [OASIS标准](https://www.oasis-open.org/committees/mqtt/) 2014年10月29日
+* [OASIS标准](https://www.oasis-open.org/committees/mqtt/) 2017年10月26日
 
 ## 规范链接 （Specification URIs）
 
