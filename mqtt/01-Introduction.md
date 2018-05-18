@@ -85,25 +85,25 @@ MQTT协议通过网络传输应用数据。应用消息通过MQTT传输时，它
 ## 1.3 规范引用 Normative references
 
 \[RFC2119\]
-Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997, 
+Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997,  
 <http://www.rfc-editor.org/info/rfc2119>
 
 \[RFC3629\]
-Yergeau, F., "UTF-8, a transformation format of ISO 10646", STD 63, RFC 3629, DOI 10.17487/RFC3629, November 2003,
+Yergeau, F., "UTF-8, a transformation format of ISO 10646", STD 63, RFC 3629, DOI 10.17487/RFC3629, November 2003,  
 <http://www.rfc-editor.org/info/rfc3629>
 
 \[RFC6455\]
-Fette, I. and A. Melnikov, "The WebSocket Protocol", RFC 6455, DOI 10.17487/RFC6455, December 2011,
+Fette, I. and A. Melnikov, "The WebSocket Protocol", RFC 6455, DOI 10.17487/RFC6455, December 2011,  
 <http://www.rfc-editor.org/info/rfc6455>
 
 \[Unicode\]
-The Unicode Consortium. The Unicode Standard, 
+The Unicode Consortium. The Unicode Standard,  
 <http://www.rfc-editor.org/info/rfc2119>
 
 ## 1.4 非规范引用 Non-normative references
 
 \[RFC0793\]
-Postel, J., "Transmission Control Protocol", STD 7, RFC 793, DOI 10.17487/RFC0793, September 1981, 
+Postel, J., "Transmission Control Protocol", STD 7, RFC 793, DOI 10.17487/RFC0793, September 1981,  
 <http://www.rfc-editor.org/info/rfc793>
 
 \[RFC5246\]
@@ -111,95 +111,95 @@ Dierks, T. and E. Rescorla, "The Transport Layer Security (TLS) Protocol Version
 <http://www.rfc-editor.org/info/rfc2119>
 
 \[AES\]
-Advanced Encryption Standard (AES) (FIPS PUB 197). 
+Advanced Encryption Standard (AES) (FIPS PUB 197).  
 <https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf>
 
 \[CHACHA20\]
-ChaCha20 and Poly1305 for IETF Protocols
+ChaCha20 and Poly1305 for IETF Protocols  
 <https://tools.ietf.org/html/rfc7539>
 
 \[FIPS1402\]
-Security Requirements for Cryptographic Modules (FIPS PUB 140-2)
+Security Requirements for Cryptographic Modules (FIPS PUB 140-2)  
 <https://csrc.nist.gov/csrc/media/publications/fips/140/2/final/documents/fips1402.pdf>
 
 \[IEEE 802.1AR\]
-IEEE Standard for Local and metropolitan area networks - Secure Device Identity
+IEEE Standard for Local and metropolitan area networks - Secure Device Identity  
 <http://standards.ieee.org/findstds/standard/802.1AR-2009.html>
 
 \[ISO29192\]
-ISO/IEC 29192-1:2012 Information technology -- Security techniques -- Lightweight cryptography -- Part 1: General
+ISO/IEC 29192-1:2012 Information technology -- Security techniques -- Lightweight cryptography -- Part 1: General  
 <https://www.iso.org/standard/56425.html>
 
 \[MQTT NIST\]
-MQTT supplemental publication, MQTT and the NIST Framework for Improving Critical Infrastructure Cybersecurity
+MQTT supplemental publication, MQTT and the NIST Framework for Improving Critical Infrastructure Cybersecurity  
 <http://docs.oasis-open.org/mqtt/mqtt-nist-cybersecurity/v1.0/mqtt-nist-cybersecurity-v1.0.html>
 
 \[MQTTV311\]
-MQTT V3.1.1 Protocol Specification
+MQTT V3.1.1 Protocol Specification  
 <http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html>
 
 \[ISO20922\]
-MQTT V3.1.1 ISO Standard (ISO/IEC 20922:2016)
+MQTT V3.1.1 ISO Standard (ISO/IEC 20922:2016)  
 <https://www.iso.org/standard/69466.html>
 
 \[NISTCSF\]
-Improving Critical Infrastructure Cybersecurity Executive Order 13636
+Improving Critical Infrastructure Cybersecurity Executive Order 13636  
 <https://www.nist.gov/sites/default/files/documents/itl/preliminary-cybersecurity-framework.pdf>
 
 \[NIST7628\]
-NISTIR 7628 Guidelines for Smart Grid Cyber Security Catalogue 
+NISTIR 7628 Guidelines for Smart Grid Cyber Security Catalogue  
 <https://www.nist.gov/sites/default/files/documents/smartgrid/nistir-7628_total.pdf>
 
 \[NSAB\]
-NSA Suite B Cryptography
+NSA Suite B Cryptography  
 <http://www.nsa.gov/ia/programs/suiteb_cryptography/>
 
 \[PCIDSS\]
-PCI-DSS Payment Card Industry Data Security Standard
+PCI-DSS Payment Card Industry Data Security Standard  
 <https://www.pcisecuritystandards.org/pci_security/>
 
 \[RFC1928\]
-Leech, M., Ganis, M., Lee, Y., Kuris, R., Koblas, D., and L. Jones, "SOCKS Protocol Version 5", RFC 1928, DOI 10.17487/RFC1928, March 1996, 
+Leech, M., Ganis, M., Lee, Y., Kuris, R., Koblas, D., and L. Jones, "SOCKS Protocol Version 5", RFC 1928, DOI 10.17487/RFC1928, March 1996,  
 <http://www.rfc-editor.org/info/rfc1928>
 
 \[RFC4511\]
-Sermersheim, J., Ed., "Lightweight Directory Access Protocol (LDAP): The Protocol", RFC 4511, DOI 10.17487/RFC4511, June 2006,
+Sermersheim, J., Ed., "Lightweight Directory Access Protocol (LDAP): The Protocol", RFC 4511, DOI 10.17487/RFC4511, June 2006,  
 <http://www.rfc-editor.org/info/rfc4511>
 
 \[RFC5280\]
-Cooper, D., Santesson, S., Farrell, S., Boeyen, S., Housley, R., and W. Polk, "Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008,
+Cooper, D., Santesson, S., Farrell, S., Boeyen, S., Housley, R., and W. Polk, "Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008,  
 <http://www.rfc-editor.org/info/rfc5280>
 
 \[RFC6066\]
-Eastlake 3rd, D., "Transport Layer Security (TLS) Extensions: Extension Definitions", RFC 6066, DOI 10.17487/RFC6066, January 2011,
+Eastlake 3rd, D., "Transport Layer Security (TLS) Extensions: Extension Definitions", RFC 6066, DOI 10.17487/RFC6066, January 2011,  
 <http://www.rfc-editor.org/info/rfc6066>
 
 \[RFC6749\]
-Hardt, D., Ed., "The OAuth 2.0 Authorization Framework", RFC 6749, DOI 10.17487/RFC6749, October 2012,
+Hardt, D., Ed., "The OAuth 2.0 Authorization Framework", RFC 6749, DOI 10.17487/RFC6749, October 2012,  
 <http://www.rfc-editor.org/info/rfc6749>
 
 \[RFC6960\]
-Santesson, S., Myers, M., Ankney, R., Malpani, A., Galperin, S., and C. Adams, "X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP", RFC 6960, DOI 10.17487/RFC6960, June 2013,
+Santesson, S., Myers, M., Ankney, R., Malpani, A., Galperin, S., and C. Adams, "X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP", RFC 6960, DOI 10.17487/RFC6960, June 2013,  
 <http://www.rfc-editor.org/info/rfc6960>
 
 \[SARBANES\]
-Sarbanes-Oxley Act of 2002.
+Sarbanes-Oxley Act of 2002.  
 <http://www.gpo.gov/fdsys/pkg/PLAW-107publ204/html/PLAW-107publ204.htm>
 
 \[USEUPRIVSH\]
-U.S.-EU Privacy Shield Framework
+U.S.-EU Privacy Shield Framework  
 <https://www.privacyshield.gov>
 
 \[RFC3986\]
-Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, DOI 10.17487/RFC3986, January 2005,
+Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform Resource Identifier (URI): Generic Syntax", STD 66, RFC 3986, DOI 10.17487/RFC3986, January 2005,  
 <http://www.rfc-editor.org/info/rfc3986>
 
 \[RFC1035\]
-Mockapetris, P., "Domain names - implementation and specification", STD 13, RFC 1035, DOI 10.17487/RFC1035, November 1987,
+Mockapetris, P., "Domain names - implementation and specification", STD 13, RFC 1035, DOI 10.17487/RFC1035, November 1987,  
 <http://www.rfc-editor.org/info/rfc1035>
 
 \[RFC2782\]
-Gulbrandsen, A., Vixie, P., and L. Esibov, "A DNS RR for specifying the location of services (DNS SRV)", RFC 2782, DOI 10.17487/RFC2782, February 2000,
+Gulbrandsen, A., Vixie, P., and L. Esibov, "A DNS RR for specifying the location of services (DNS SRV)", RFC 2782, DOI 10.17487/RFC2782, February 2000,  
 <http://www.rfc-editor.org/info/rfc2782>
 
 ## 1.5 数据表示 Data representations
@@ -282,7 +282,6 @@ UTF-8编码序列0XEF 0xBB 0xBF总是被解释为U+FEFF（零宽度非换行空�
 #### 非规范示例 Non normative example
 
 > 非负整数 X 使用变长编码方案的算法如下：
-
 > do <br>
 > 　　encodedByte = X MOD 128 <br>
 > 　　X = X DIV 128 <br>
@@ -292,13 +291,11 @@ UTF-8编码序列0XEF 0xBB 0xBF总是被解释为U+FEFF（零宽度非换行空�
 > 　　endif <br>
 > 　　'output' encodedByte <br>
 > while (X > 0) <br>
-
-MOD是模运算，DIV是整数除法，OR是位操作或（C语言中分别是%，/，|）。
+> MOD是模运算，DIV是整数除法，OR是位操作或（C语言中分别是%，/，|）。
 
 #### 非规范示例 Non normative example
 
-剩余长度字段的解码算法如下：
-
+> 剩余长度字段的解码算法如下：
 > multiplier = 1 <br>
 > value = 0 <br>
 > do <br>
@@ -308,7 +305,6 @@ MOD是模运算，DIV是整数除法，OR是位操作或（C语言中分别是%�
 > 　　　　throw Error(Malformed Variable Byte Integer) <br>
 > 　　multiplier *= 128 <br>
 > while ((encodedByte AND 128) != 0) <br>
-
 > AND 是位操作与（C 语言中的&）
 
 这个算法终止时，value 包含的就是剩余长度的值。
@@ -335,8 +331,7 @@ MQTT客户端和服务端实现应该提供认证、授权和安全通信功能�
 
 ### 1.8.1 MQTT v3.1.1
 
-MQTT v3.1.1 是首个OASIS标准版本MQTT **\[MQTTV311\]**。
-
+MQTT v3.1.1 是首个OASIS标准版本MQTT **\[MQTTV311\]**。  
 MQTT v3.1.1也是ISO/IEC 20922:2016 \[ISO20922\] 标准。
 
 ### 1.8.2 MQTT v5.0
