@@ -50,6 +50,6 @@ MQTT客户端只有满足下面所有的要求才算是符合本规范：
 
 ### 项目主页
 
-- [MQTT协议中文版](https://github.com/hui6075/mqtt_v5)
+- [MQTT v5.0协议草案中文版](https://github.com/hui6075/mqtt_v5)
 
 

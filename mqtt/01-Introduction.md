@@ -347,4 +347,4 @@ MQTT v5.0 在保持MQTT核心不变的基础上添加了大量的新功能。这
 
 ### 项目主页
 
-- [MQTT协议中文版](https://github.com/hui6075/mqtt_v5)
+- [MQTT v5.0协议草案中文版](https://github.com/hui6075/mqtt_v5)
