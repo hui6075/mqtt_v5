@@ -187,6 +187,6 @@ TLS [\[RFC5246\]](http://www.rfc-editor.org/info/rfc5246)可以对网络传输�
 
 ### 项目主页
 
-- [MQTT协议中文版](https://github.com/hui6075/mqtt_v5)
+- [MQTT v5.0协议草案中文版](https://github.com/hui6075/mqtt_v5)
 
 
