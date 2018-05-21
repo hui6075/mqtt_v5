@@ -329,9 +329,9 @@ $share/{ShareName}/{filter}
 >
 > 共享订阅在MQTT服务端的范围内定义，而不是在会话中定义。共享订阅的主题过滤器包含共享名，因此服务端可以有多个包含相同{过滤器}组件的共享订阅。通常，应用程序使用共享名表示共享同一个订阅的一组订阅会话。
 > 示例：
-> -    共享订阅“$share/consumer1/sport/tennis/+”和“$share/consumer2/sport/tennis/+”是不同的共享订阅，因此可以被关联到不同的会话组。它们都与非共享订阅主题“sport/tennis/+”相匹配。
+> -    共享订阅“$share/consumer1/sport/tennis/+”和“$share/consumer2/sport/tennis/+”是不同的共享订阅，因此可以被关联到不同的会话组。它们都与非共享订阅主题“sport/tennis/+”相匹配。  
 > 如果一条消息被发布到匹配主题“sport/tennis/+”，则消息的副本仅发送给所有订阅“$share/consumer1/sport/tennis/+”的会话中的一个会话，也仅发送给所有订阅“$share/consumer2/sport/tennis/+”的会话中的一个会话。更多的副本将发送给所有对“sport/tennis/+”进行非共享订阅的客户端。 
-> -    共享订阅“$share/consumer1//finance”匹配非共享订阅主题“/finance”。
+> -    共享订阅“$share/consumer1//finance”匹配非共享订阅主题“/finance”。  
 > 注意，“$share/consumer1//finance”和“$share/consumer1/sport/tennis/+”是不同的共享订阅，尽管它们有相同的共享名。它们可能在某种程度上是相关的，但拥有相同的共享名并不意味着它们之间有某种关系。
 
 通过SUBSCRIBE请求中的共享订阅主题过滤器创建共享订阅。只有一个会话订阅了某个共享订阅时，共享订阅行为如同非共享订阅，除了：
