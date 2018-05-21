@@ -155,7 +155,7 @@ TLS [\[RFC5246\]](http://www.rfc-editor.org/info/rfc5246)可以对网络传输�
 
 ### 5.4.10 使用SOCKS代理 Use of SOCKS
 
-客户端实现应该意识到某些环境要求使用SOCKSv5 [\[RFC1928]\](http://www.rfc-editor.org/info/rfc1928)代理创建出站的网络连接。某些MQTT实现可以利用安全隧道（如SSH）通过SOCKS代理。一个实现决定支持SOCKS时，它们应该同时支持匿名的和用户名密码验证的SOCKS代理。对于后一种情况，实现应该意识到SOCKS可能使用明文认证，因此应该避免使用相同的凭证连接 MQTT 服务器。
+客户端实现应该意识到某些环境要求使用SOCKSv5 [\[RFC1928\]](http://www.rfc-editor.org/info/rfc1928)代理创建出站的网络连接。某些MQTT实现可以利用安全隧道（如SSH）通过SOCKS代理。一个实现决定支持SOCKS时，它们应该同时支持匿名的和用户名密码验证的SOCKS代理。对于后一种情况，实现应该意识到SOCKS可能使用明文认证，因此应该避免使用相同的凭证连接 MQTT 服务器。
 
 ### 5.4.11 安全配置文件 Security profiles
 
