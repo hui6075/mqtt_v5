@@ -18,30 +18,37 @@ MQTT协议通过交换预定义的MQTT控制报文来通信。这一节描述这
 
 MQTT控制报文由三部分组成，按照下图描述的顺序：
 
-##### 图 2.1 –MQTT控制报文的结构
+##### 图 2-1 MQTT控制报文的结构 Structure of an MQTT Control Packet
 
-| Fixed header   固定报头，所有控制报文都包含  |
-|---------------------------------------------|
-| Variable header   可变报头，部分控制报文包含 |
-| Payload   有效载荷，部分控制报文包含         |
+<table>
+  <tr>
+    <td width=224 align="center">Fixed Header固定报头，所有控制报文都包含</td>
+  </tr>
+  <tr>
+    <td align="center">Variable Header 可变报头，部分控制报文包含</td>
+  </tr>
+  <tr>
+    <td align="center">Payload 有效载荷，部分控制报文包含</td>
+  </tr>
+</table>
 
 ### 2.1.1 固定报头 Fixed header
 
 如下图所示，每个 MQTT 控制报文都包含一个固定报头。
 
-##### 图 2.2 -固定报头的格式
+##### 图 2-2 固定报头的格式 Fixed Header format
 
 <table style="text-align:center">
   <tr>
-    <td align="center"><strong>Bit</strong></td>
-    <td align="center"><strong>7</strong></td>
-    <td align="center"><strong>6</strong></td>
-    <td align="center"><strong>5</strong></td>
-    <td align="center"><strong>4</strong></td>
-    <td align="center"><strong>3</strong></td>
-    <td align="center"><strong>2</strong></td>
-    <td align="center"><strong>1</strong></td>
-    <td align="center"><strong>0</strong></td>
+    <th width=130>比特位</td>
+    <th width=65>7</th>
+    <th width=65>6</th>
+    <th width=65>5</th>
+    <th width=65>4</th>
+    <th width=65>3</th>
+    <th width=65>2</th>
+    <th width=65>1</th>
+    <th width=65>0</th>
   </tr>
   <tr>
     <td>byte 1</td>
@@ -60,7 +67,7 @@ MQTT控制报文由三部分组成，按照下图描述的顺序：
 
 表示为4位无符号值，这些值的定义见下表。
 
-##### 表 2.1 -控制报文的类型 
+##### 表 2-1 MQTT控制报文的类型 MQTT Control Packet types
 
 | **名字**    | **值** | **报文流动方向** | **描述**                            |
 |-------------|--------|------------------|-------------------------------------|
@@ -85,24 +92,137 @@ MQTT控制报文由三部分组成，按照下图描述的顺序：
 
 固定报头第1个字节的剩余的4位 \[3-0\]包含每个 MQTT 控制报文类型特定的标志如下表所示。表格中任何标记为“保留”的标志位，都是保留给以后使用的，**必须**设置为表格中列出的值 \[MQTT-2.1.3-1\]。如果收到非法的标志，此报文被当做无效报文。有关错误处理的详细信息见 4.8节 \[MQTT-2.2.2-2\]。
 
-#####  表 2.2 - 标志位 Flag Bits
+##### 表 2-2 标志位 Flag Bits
 
-| **控制报文** | **固定报头标志**   | **Bit 3**       | **Bit 2**       | **Bit 1**       | **Bit 0**          |
-|--------------|--------------------|-----------------|-----------------|-----------------|--------------------|
-| CONNECT      | Reserved           | 0               | 0               | 0               | 0                  |
-| CONNACK      | Reserved           | 0               | 0               | 0               | 0                  |
-| PUBLISH      | Used in MQTT v5.0  | DUP<sup>1</sup> | QoS<sup>2</sup> | QoS<sup>2</sup> | RETAIN<sup>3</sup> |
-| PUBACK       | Reserved           | 0               | 0               | 0               | 0                  |
-| PUBREC       | Reserved           | 0               | 0               | 0               | 0                  |
-| PUBREL       | Reserved           | 0               | 0               | 1               | 0                  |
-| PUBCOMP      | Reserved           | 0               | 0               | 0               | 0                  |
-| SUBSCRIBE    | Reserved           | 0               | 0               | 1               | 0                  |
-| SUBACK       | Reserved           | 0               | 0               | 0               | 0                  |
-| UNSUBSCRIBE  | Reserved           | 0               | 0               | 1               | 0                  |
-| UNSUBACK     | Reserved           | 0               | 0               | 0               | 0                  |
-| PINGREQ      | Reserved           | 0               | 0               | 0               | 0                  |
-| PINGRESP     | Reserved           | 0               | 0               | 0               | 0                  |
-| DISCONNECT   | Reserved           | 0               | 0               | 0               | 0                  |
+<table>
+  <tr>
+    <th width=100>控制报文</th>
+    <th>固定报头标志</th>
+    <th>Bit 3</th>
+	<th>Bit 2</th>
+	<th>Bit 1</th>
+	<th>Bit 0</th>
+  </tr>
+  <tr>
+    <td>CONNECT</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>CONNACK</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>PUBLISH</td>
+	<td>Used in MQTT v5.0</td>
+	<td>DUP</td>
+	<td colspan="2" align="center">QoS</td>
+	<td>RETAIN</td>
+  </tr>
+  <tr>
+    <td>PUBACK</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>PUBREC</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>PUBREL</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>PUBCOMP</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>SUBSCRIBE</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>SUBACK</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>UNSUBSCRIBE</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>UNSUBACK</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>PINGREQ</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>PINGRESP</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>DISCONNECT</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>AUTH</td>
+	<td>Reserved</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+</table>
 
 - DUP<sup>1</sup> =控制报文的重复分发标志
 - QoS<sup>2</sup> = PUBLISH报文的服务质量等级
@@ -124,7 +244,7 @@ PUBLISH控制报文中的DUP, QoS和RETAIN标志的描述见 3.3.1节。
 
 需要报文标识符的MQTT控制报文如下表所示。
 
-##### 表 2.3 -包含报文标识符的MQTT控制报文 MQTT Control Packets that contain a Packet Identifier
+##### 表 2-3 包含报文标识符的MQTT控制报文 MQTT Control Packets that contain a Packet Identifier
 
 | **MQTT控制报文** | **报文标识符字段**     |
 |------------------|------------------------|
@@ -183,668 +303,209 @@ CONNECT，CONNACK，PUBLISH，PUBACK，PUBREC，PUBREL，PUBCOMP，SUBSCRIBE，S
 
 一个属性包含一段数据和一个定义了属性用途和数据类型的标识符。标识符被编码为变长字节整数。任何控制报文，如果包含了：对于该报文类型无效的标识符，或者错误类型的数据，都是无效报文。收到无效报文时，服务端或客户端使用包含原因码0x81（无效报文）CONNACK或DISCONNECT报文进行错误处理，如4.13节 所述。标识符排序不分先后。
 
-##### 表 2.4 – 属性 Properties
+##### 表 2-4 属性 Properties
 
-<div class=WordSection1 style='layout-grid:15.6pt'>
-
-<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=685
- style='width:513.9pt;border-collapse:collapse;mso-yfti-tbllook:1184;
- mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
- <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;page-break-inside:avoid'>
-  <td width=95 colspan=2 valign=top style='width:71.55pt;background:white;
-  mso-background-themecolor:background1;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>标识符</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif";
-  mso-fareast-language:ZH-CN'><o:p></o:p></span></b></p>
-  </td>
-  <td width=188 rowspan=2 valign=top style='width:141.3pt;background:white;
-  mso-background-themecolor:background1;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>属性名</span></b><b><span
-  style='font-family:"Arial","sans-serif"'> </span></b><b><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>（用途）</span></b><b style='mso-bidi-font-weight:
-  normal'><span lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:
-  ZH-CN'><o:p></o:p></span></b></p>
-  </td>
-  <td width=150 rowspan=2 valign=top style='width:112.6pt;background:white;
-  mso-background-themecolor:background1;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>数据类型</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif";
-  mso-fareast-language:ZH-CN'><o:p></o:p></span></b></p>
-  </td>
-  <td width=251 rowspan=2 valign=top style='width:188.45pt;background:white;
-  mso-background-themecolor:background1;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>报文</span></b><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>/</span></b><b><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>遗嘱属性</span></b><b style='mso-bidi-font-weight:
-  normal'><span lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:
-  ZH-CN'><o:p></o:p></span></b></p>
-  <p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:1;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;background:white;mso-background-themecolor:
-  background1;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>Dec</span></b><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></b></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;background:white;mso-background-themecolor:
-  background1;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>Hex<o:p></o:p></span></b></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:2;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>1<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x01<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>载荷格式说明</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>字节</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>PUBLISH,
-  Will Properties<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:3;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>2<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x02<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>消息过期时间</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>四字节整数</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>PUBLISH,
-  Will Properties<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:4;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>3<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x03<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>内容类型</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>UTF-8</span><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>编码字符串</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>PUBLISH,
-  Will Properties<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:5;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>8<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x08<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>响应主题</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>UTF-8</span><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>编码字符串</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>PUBLISH,
-  Will Properties<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:6;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>9<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x09<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>相关数据</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>二进制数据</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>PUBLISH,
-  Will Properties<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:7;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>11<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x0B<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>定义标识符</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>变长字节整数</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>PUBLISH,
-  SUBSCRIBE<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:8;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>17<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x11<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>会话过期间隔</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>四字节整数</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNECT,
-  CONNACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:9;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>18<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x12<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>分配客户标识符</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>UTF-8</span><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>编码字符串</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:10;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>19<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x13<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>服务端保活时间</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>双字节整数</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:11;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>21<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x15<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>认证方法</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>UTF-8</span><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>编码字符串</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNECT,
-  CONNACK, AUTH<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:12;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>22<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x16<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>认证数据</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>二进制数据</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNECT,
-  CONNACK, AUTH<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:13;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>23<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x17<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>请求问题信息</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>字节</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:14;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>24<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x18<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>遗嘱延时间隔</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>四字节整数</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>Will
-  Properties<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:15;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>25<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x19<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>请求响应信息</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>字节</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:16;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>26<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x1A<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>请求信息</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>UTF-8</span><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>编码字符串</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:17;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>28<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x1C<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>服务端参考</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>UTF-8</span><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>编码字符串</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNACK,
-  DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:18;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>31<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x1F<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>原因字符串</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>UTF-8</span><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>编码字符串</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNACK,
-  PUBACK, PUBREC, PUBREL, PUBCOMP, SUBACK, UNSUBACK, DISCONNECT, AUTH<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:19;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>33<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x21<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>接收最大数量</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>双字节整数</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNECT,
-  CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:20;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>34<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x22<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>主题别名最大长度</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>双字节整数</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNECT,
-  CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:21;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>35<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x23<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>主题别名</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>双字节整数</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>PUBLISH<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:22;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>36<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x24<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>最大</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>QoS<o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>字节</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:23;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>37<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x25<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>保留属性可用性</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>字节</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:24;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>38<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x26<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>用户属性</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>UTF-8</span><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>字符串对</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNECT,
-  CONNACK, PUBLISH, Will Properties, PUBACK, PUBREC, PUBREL, PUBCOMP,
-  SUBSCRIBE, SUBACK, UNSUBSCRIBE, UNSUBACK, DISCONNECT, AUTH<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:25;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>39<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x27<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>最大报文长度</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>四字节整数</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNECT,
-  CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:26;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>40<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x28<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>通配符订阅可用性</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>字节</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:27;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>41<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x29<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>订阅标识符可用性</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>字节</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:28;mso-yfti-lastrow:yes;page-break-inside:avoid'>
-  <td width=45 valign=top style='width:33.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>42<o:p></o:p></span></p>
-  </td>
-  <td width=51 valign=top style='width:38.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>0x2A<o:p></o:p></span></p>
-  </td>
-  <td width=188 valign=top style='width:141.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>共享订阅可用性</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=150 valign=top style='width:112.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>字节</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=251 valign=top style='width:188.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
+<table>
+  <tr>
+    <th colspan="2">标识符</th>
+    <th width=156 rowspan="2">属性名</th>
+    <th width=152 rowspan="2">数据类型</th>
+	<th rowspan="2">报文/遗嘱属性</th>
+  </tr>
+  <tr>
+    <td><strong>Dec</strong></td>
+	<td><strong>Hex</strong></td>
+  </tr>
+  <tr>
+    <td>1</td>
+	<td>0x01</td>
+	<td>载荷格式说明</td>
+	<td>字节</td>
+	<td>PUBLISH, Will Properties</td>
+  </tr>
+  <tr>
+    <td>2</td>
+	<td>0x02</td>
+	<td>消息过期时间</td>
+	<td>四字节整数</td>
+	<td>PUBLISH, Will Properties</td>
+  </tr>
+  <tr>
+    <td>3</td>
+	<td>0x03</td>
+	<td>内容类型</td>
+	<td>UTF-8编码字符串</td>
+	<td>PUBLISH, Will Properties</td>
+  </tr>
+  <tr>
+    <td>8</td>
+	<td>0x08</td>
+	<td>响应主题</td>
+	<td>UTF-8编码字符串</td>
+	<td>PUBLISH, Will Properties</td>
+  </tr>
+  <tr>
+    <td>9</td>
+	<td>0x09</td>
+	<td>相关数据</td>
+	<td>二进制数据</td>
+	<td>PUBLISH, Will Properties</td>
+  </tr>
+  <tr>
+    <td>11</td>
+	<td>0x0B</td>
+	<td>定义标识符</td>
+	<td>变长字节整数</td>
+	<td>PUBLISH, SUBSCRIBE</td>
+  </tr>
+  <tr>
+    <td>17</td>
+	<td>0x11</td>
+	<td>会话过期间隔</td>
+	<td>四字节整数</td>
+	<td>CONNECT, CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>18</td>
+	<td>0x12</td>
+	<td>分配客户标识符</td>
+	<td>UTF-8编码字符串</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>19</td>
+	<td>0x13</td>
+	<td>服务端保活时间</td>
+	<td>双字节整数</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>21</td>
+	<td>0x15</td>
+	<td>认证方法</td>
+	<td>UTF-8编码字符串</td>
+	<td>CONNECT, CONNACK, AUTH</td>
+  </tr>
+  <tr>
+    <td>22</td>
+	<td>0x16</td>
+	<td>认证数据</td>
+	<td>二进制数据</td>
+	<td>CONNECT, CONNACK, AUTH</td>
+  </tr>
+  <tr>
+    <td>23</td>
+	<td>0x17</td>
+	<td>请求问题信息</td>
+	<td>字节</td>
+	<td>CONNECT</td>
+  </tr>
+  <tr>
+    <td>24</td>
+	<td>0x18</td>
+	<td>遗嘱延时间隔</td>
+	<td>四字节整数</td>
+	<td>Will Properties</td>
+  </tr>
+  <tr>
+    <td>25</td>
+	<td>0x19</td>
+	<td>请求响应信息</td>
+	<td>字节</td>
+	<td>CONNECT</td>
+  </tr>
+  <tr>
+    <td>26</td>
+	<td>0x1A</td>
+	<td>请求信息</td>
+	<td>UTF-8编码字符串</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>28</td>
+	<td>0x1C</td>
+	<td>服务端参考</td>
+	<td>UTF-8编码字符串</td>
+	<td>CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>31</td>
+	<td>0x1F</td>
+	<td>原因字符串</td>
+	<td>UTF-8编码字符串</td>
+	<td>CONNACK, PUBACK, PUBREC, PUBREL, PUBCOMP, SUBACK, UNSUBACK, DISCONNECT, AUTH</td>
+  </tr>
+  <tr>
+    <td>33</td>
+	<td>0x21</td>
+	<td>接收最大数量</td>
+	<td>双字节整数</td>
+	<td>CONNECT, CONNACK</td>
+  </tr>
+  <tr>
+    <td>34</td>
+	<td>0x22</td>
+	<td>主题别名最大长度</td>
+	<td>双字节整数</td>
+	<td>CONNECT, CONNACK</td>
+  </tr>
+  <tr>
+    <td>35</td>
+	<td>0x23</td>
+	<td>主题别名</td>
+	<td>双字节整数</td>
+	<td>PUBLISH</td>
+  </tr>
+  <tr>
+    <td>36</td>
+	<td>0x24</td>
+	<td>最大QoS</td>
+	<td>字节</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>37</td>
+	<td>0x25</td>
+	<td>保留属性可用性</td>
+	<td>字节</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>38</td>
+	<td>0x26</td>
+	<td>用户属性</td>
+	<td>UTF-8字符串对</td>
+	<td>CONNECT, CONNACK, PUBLISH, Will Properties, PUBACK, PUBREC, PUBREL, PUBCOMP, SUBSCRIBE, SUBACK, UNSUBSCRIBE, UNSUBACK, DISCONNECT, AUTH</td>
+  </tr>
+  <tr>
+    <td>39</td>
+	<td>0x27</td>
+	<td>最大报文长度</td>
+	<td>四字节整数</td>
+	<td>CONNECT, CONNACK</td>
+  </tr>
+  <tr>
+    <td>40</td>
+	<td>0x28</td>
+	<td>通配符订阅可用性</td>
+	<td>字节</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>41</td>
+	<td>0x29</td>
+	<td>订阅标识符可用性</td>
+	<td>字节</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>42</td>
+	<td>0x2A</td>
+	<td>共享订阅可用性</td>
+	<td>字节</td>
+	<td>CONNACK</td>
+  </tr>
 </table>
-
-<p class=MsoNormal><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
-
-</div>
 
 > **非规范评注**
 >
@@ -853,9 +514,9 @@ CONNECT，CONNACK，PUBLISH，PUBACK，PUBREC，PUBREL，PUBCOMP，SUBSCRIBE，S
 
 ## 2.3 有效载荷 Payload
 
-某些 MQTT 控制报文在报文的最后部分包含一个有效载荷，这将在第三章论述。对于 PUBLISH 来说有效载荷就是应用消息。
+某些MQTT控制报文在报文的最后部分包含一个有效载荷，这将在第三章论述。对于PUBLISH来说有效载荷就是应用消息。
 
-##### 表 2.5 – 包含有效载荷的MQTT控制报文 MQTT Control Packets that contain a Payload
+##### 表 2-5 包含有效载荷的MQTT控制报文 MQTT Control Packets that contain a Payload
 
 | **MQTT控制报文** | **有效载荷** |
 |------------------|--------------|
@@ -869,10 +530,11 @@ CONNECT，CONNACK，PUBLISH，PUBACK，PUBREC，PUBREL，PUBCOMP，SUBSCRIBE，S
 | SUBSCRIBE        | 需要         |
 | SUBACK           | 需要         |
 | UNSUBSCRIBE      | 需要         |
-| UNSUBACK         | 不需要       |
+| UNSUBACK         | 需要         |
 | PINGREQ          | 不需要       |
 | PINGRESP         | 不需要       |
 | DISCONNECT       | 不需要       |
+| AUTH             | 不需要       |
 
 ## 2.4 原因码 Reason Code
 
@@ -882,953 +544,288 @@ CONNACK，PUBACK，PUBREC，PUBREL，PUBCOMP，DISCONNECT和AUTH控制报文的�
 
 原因码如下表所示。
 
-##### 表 2.6 – 原因码 Reason Code
+##### 表 2-6 原因码 Reason Code
 
-<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=673
- style='width:504.9pt;border-collapse:collapse;mso-yfti-tbllook:1184;
- mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
- <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;page-break-inside:avoid'>
-  <td width=113 colspan=2 valign=top style='width:84.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='margin:0cm;margin-bottom:.0001pt;
-  text-align:center'><b><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>原因码</span></b><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></b></p>
-  </td>
-  <td width=211 rowspan=2 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='margin:0cm;margin-bottom:.0001pt;
-  text-align:center'><b><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>名称</span></b><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></b></p>
-  </td>
-  <td width=349 rowspan=2 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='margin:0cm;margin-bottom:.0001pt;
-  text-align:center'><b><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>报文</span></b><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></b></p>
-  <p class=MsoNormal align=center style='margin:0cm;margin-bottom:.0001pt;
-  text-align:center'><b><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:1;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='margin:0cm;margin-bottom:.0001pt;
-  text-align:center'><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>Decimal</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></b></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='margin:0cm;margin-bottom:.0001pt;
-  text-align:center'><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>Hex<o:p></o:p></span></b></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:2;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x00<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>成功</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, PUBACK, PUBREC, PUBREL,
-  PUBCOMP, UNSUBACK, AUTH<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:3;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x00<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>正常断开</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:4;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x00<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>授权的</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif"'>QoS 0<o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>SUBACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:5;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>1<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x01<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>授权的</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif"'>QoS 1<o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>SUBACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:6;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>2<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x02<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>授权的</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif"'>QoS 2<o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>SUBACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:7;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>4<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x04<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>包含遗嘱的断开</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:8;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>16<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x10<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>无匹配订阅</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>PUBACK, PUBREC<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:9;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>17<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x11<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>订阅不存在</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>UNSUBACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:10;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>24<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x18<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>继续认证</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>AUTH<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:11;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>25<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x19<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>重新认证</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>AUTH<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:12;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>128<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x80<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>未指明的错误</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, PUBACK, PUBREC, SUBACK,
-  UNSUBACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:13;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>129<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x81<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>无效报文</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:14;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>130<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x82<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>协议错误</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:15;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>131<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x83<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>实现错误</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, PUBACK, PUBREC, SUBACK,
-  UNSUBACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:16;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>132<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x84<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>协议版本不支持</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:17;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>133<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x85<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>客户标识符无效</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:18;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>134<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x86<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>用户名密码错误</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:19;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>135<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x87<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>未授权</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, PUBACK, PUBREC, SUBACK,
-  UNSUBACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:20;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>136<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x88<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>服务端不可用</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:21;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>137<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x89<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>服务端正忙</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:22;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>138<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x8A<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>禁止</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:23;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>139<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x8B<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>服务端关闭中</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:24;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>140<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x8C<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>无效的认证方法</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:25;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>141<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x8D<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>保活超时</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:26;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>142<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x8E<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>会话被接管</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:27;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>143<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x8F<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>主题过滤器无效</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>SUBACK, UNSUBACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:28;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>144<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x90<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>主题名无效</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, PUBACK, PUBREC, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:29;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>145<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x91<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>报文标识符已被占用</span><span lang=EN-US
-  style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>PUBACK, PUBREC, SUBACK, UNSUBACK<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:30;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>146<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x92<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>报文标识符无效</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>PUBREL, PUBCOMP<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:31;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>147<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x93<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>接收超出最大数量</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:32;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>148<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x94<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>主题别名无效</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:33;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>149<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x95<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>报文过长</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:34;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>150<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x96<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>消息太过频繁</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:35;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>151<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x97<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>超出配额</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, PUBACK, PUBREC, SUBACK,
-  DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:36;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>152<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x98<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>管理行为</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:37;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>153<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x99<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>载荷格式无效</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, PUBACK, PUBREC, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:38;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>154<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x9A<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>不支持保留</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:39;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>155<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x9B<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>不支持的</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif"'>QoS</span><span style='font-family:黑体;mso-ascii-font-family:
-  Arial;mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>等级</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:40;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-size:10.5pt;font-family:"Arial","sans-serif";color:#333333'>156</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x9C<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>（临时）使用其他服务端</span><span lang=EN-US
-  style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:41;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-size:10.5pt;font-family:"Arial","sans-serif";color:#333333'>157</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x9D<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>服务端已（永久）移动</span><span lang=EN-US
-  style='font-family:"Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:42;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-size:10.5pt;font-family:"Arial","sans-serif";color:#333333'>158<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x9E<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>不支持共享订阅</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>SUBACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:43;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-size:10.5pt;font-family:"Arial","sans-serif";color:#333333'>159<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0x9F<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>超出连接速率限制</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>CONNACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:44;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-size:10.5pt;font-family:"Arial","sans-serif";color:#333333'>160<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0xA0<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>最大连接时间</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:45;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-size:10.5pt;font-family:"Arial","sans-serif";color:#333333'>161<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0xA1<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>不支持订阅标识符</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>SUBACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:46;mso-yfti-lastrow:yes;page-break-inside:avoid'>
-  <td width=66 valign=top style='width:49.2pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-size:10.5pt;font-family:"Arial","sans-serif";color:#333333'>162<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0xA2<o:p></o:p></span></p>
-  </td>
-  <td width=211 valign=top style='width:158.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span
-  style='font-family:黑体;mso-ascii-font-family:Arial;mso-hansi-font-family:Arial;
-  mso-fareast-language:ZH-CN'>不支持通配符订阅</span><span lang=EN-US style='font-family:
-  "Arial","sans-serif";mso-fareast-language:ZH-CN'><o:p></o:p></span></p>
-  </td>
-  <td width=349 valign=top style='width:261.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal style='margin:0cm;margin-bottom:.0001pt'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>SUBACK, DISCONNECT<o:p></o:p></span></p>
-  </td>
- </tr>
+<table>
+  <tr>
+    <th colspan="2">原因码</th>
+    <th rowspan="2">名称</th>
+    <th rowspan="2">报文</th>
+  </tr>
+  <tr>
+    <td><strong>Dec</strong></td>
+	<td><strong>Hex</strong></td>
+  </tr>
+  <tr>
+    <td>0</td>
+	<td>0x00</td>
+	<td>成功</td>
+	<td>CONNACK, PUBACK, PUBREC, PUBREL, PUBCOMP, UNSUBACK, AUTH</td>
+  </tr>
+  <tr>
+    <td>0</td>
+	<td>0x00</td>
+	<td>正常断开</td>
+	<td>DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>0</td>
+	<td>0x00</td>
+	<td>授权的QoS 0</td>
+	<td>SUBACK</td>
+  </tr>
+  <tr>
+    <td>1</td>
+	<td>0x01</td>
+	<td>授权的QoS 1</td>
+	<td>SUBACK</td>
+  </tr>
+  <tr>
+    <td>2</td>
+	<td>0x02</td>
+	<td>授权的QoS 2</td>
+	<td>SUBACK</td>
+  </tr>
+  <tr>
+    <td>4</td>
+	<td>0x04</td>
+	<td>包含遗嘱的断开</td>
+	<td>DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>16</td>
+	<td>0x10</td>
+	<td>无匹配订阅</td>
+	<td>PUBACK, PUBREC</td>
+  </tr>
+  <tr>
+    <td>17</td>
+	<td>0x11</td>
+	<td>订阅不存在</td>
+	<td>UNSUBACK</td>
+  </tr>
+  <tr>
+    <td>24</td>
+	<td>0x18</td>
+	<td>继续认证</td>
+	<td>AUTH</td>
+  </tr>
+  <tr>
+    <td>25</td>
+	<td>0x19</td>
+	<td>重新认证</td>
+	<td>AUTH</td>
+  </tr>
+  <tr>
+    <td>128</td>
+	<td>0x80</td>
+	<td>未指明的错误</td>
+	<td>CONNACK, PUBACK, PUBREC, SUBACK, UNSUBACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>129</td>
+	<td>0x81</td>
+	<td>无效报文</td>
+	<td>CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>130</td>
+	<td>0x82</td>
+	<td>协议错误</td>
+	<td>CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>131</td>
+	<td>0x83</td>
+	<td>实现错误</td>
+	<td>CONNACK, PUBACK, PUBREC, SUBACK, UNSUBACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>132</td>
+	<td>0x84</td>
+	<td>协议版本不支持</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>133</td>
+	<td>0x85</td>
+	<td>客户标识符无效</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>134</td>
+	<td>0x86</td>
+	<td>用户名密码错误</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>135</td>
+	<td>0x87</td>
+	<td>未授权</td>
+	<td>CONNACK, PUBACK, PUBREC, SUBACK, UNSUBACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>136</td>
+	<td>0x88</td>
+	<td>服务端不可用</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>137</td>
+	<td>0x89</td>
+	<td>服务端正忙</td>
+	<td>CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>138</td>
+	<td>0x8A</td>
+	<td>禁止</td>
+	<td>CONNACK</td>
+  </tr>
+  <tr>
+    <td>139</td>
+	<td>0x8B</td>
+	<td>服务端关闭中</td>
+	<td>DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>140</td>
+	<td>0x8C</td>
+	<td>无效的认证方法</td>
+	<td>CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>141</td>
+	<td>0x8D</td>
+	<td>保活超时</td>
+	<td>DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>142</td>
+	<td>0x8E</td>
+	<td>会话被接管</td>
+	<td>DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>143</td>
+	<td>0x8F</td>
+	<td>主题过滤器无效</td>
+	<td>SUBACK, UNSUBACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>144</td>
+	<td>0x90</td>
+	<td>主题名无效</td>
+	<td>CONNACK, PUBACK, PUBREC, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>145</td>
+	<td>0x91</td>
+	<td>报文标识符已被占用</td>
+	<td>PUBACK, PUBREC, SUBACK, UNSUBACK</td>
+  </tr>
+  <tr>
+    <td>146</td>
+	<td>0x92</td>
+	<td>报文标识符无效</td>
+	<td>PUBREL, PUBCOMP</td>
+  </tr>
+  <tr>
+    <td>147</td>
+	<td>0x93</td>
+	<td>接收超出最大数量</td>
+	<td>DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>148</td>
+	<td>0x94</td>
+	<td>主题别名无效</td>
+	<td>DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>149</td>
+	<td>0x95</td>
+	<td>报文过长</td>
+	<td>CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>150</td>
+	<td>0x96</td>
+	<td>消息太过频繁</td>
+	<td>DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>151</td>
+	<td>0x97</td>
+	<td>超出配额</td>
+	<td>CONNACK, PUBACK, PUBREC, SUBACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>152</td>
+	<td>0x98</td>
+	<td>管理行为</td>
+	<td>DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>153</td>
+	<td>0x99</td>
+	<td>载荷格式无效</td>
+	<td>CONNACK, PUBACK, PUBREC, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>154</td>
+	<td>0x9A</td>
+	<td>不支持保留</td>
+	<td>CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>155</td>
+	<td>0x9B</td>
+	<td>不支持的QoS等级</td>
+	<td>CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>156</td>
+	<td>0x9C</td>
+	<td>（临时）使用其他服务端</td>
+	<td>CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>157</td>
+	<td>0x9D</td>
+	<td>服务端已（永久）移动</td>
+	<td>CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>158</td>
+	<td>0x9E</td>
+	<td>不支持共享订阅</td>
+	<td>SUBACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>159</td>
+	<td>0x9F</td>
+	<td>超出连接速率限制</td>
+	<td>CONNACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>160</td>
+	<td>0xA0</td>
+	<td>最大连接时间</td>
+	<td>DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>161</td>
+	<td>0xA1</td>
+	<td>不支持订阅标识符</td>
+	<td>SUBACK, DISCONNECT</td>
+  </tr>
+  <tr>
+    <td>162</td>
+	<td>0xA2</td>
+	<td>不支持通配符订阅</td>
+	<td>SUBACK, DISCONNECT</td>
+  </tr>
 </table>
 
 > **非规范评注**
