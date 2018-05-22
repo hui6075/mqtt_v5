@@ -198,126 +198,39 @@ CONNECT 报文的可变报头按下列次序包含四个字段：协议名（Pro
 
 ##### 图 3.4 - 连接标志位 Connect Flag bits
 
-<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
- style='border-collapse:collapse;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
- <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
-  <td width=65 valign=top style='width:48.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>Bit</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></b></p>
-  </td>
-  <td width=85 valign=top style='width:63.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>7</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></b></p>
-  </td>
-  <td width=84 valign=top style='width:63.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>6</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></b></p>
-  </td>
-  <td width=85 valign=top style='width:63.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>5</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></b></p>
-  </td>
-  <td width=47 valign=top style='width:35.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>4</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></b></p>
-  </td>
-  <td width=47 valign=top style='width:35.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>3</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></b></p>
-  </td>
-  <td width=76 valign=top style='width:2.0cm;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>2</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></b></p>
-  </td>
-  <td width=78 valign=top style='width:58.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>1</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></b></p>
-  </td>
-  <td width=71 valign=top style='width:53.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><b><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>0</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p></o:p></span></b></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:1'>
-  <td width=65 valign=top style='width:48.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
-  </td>
-  <td width=85 valign=top style='width:63.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>User Name Flag<o:p></o:p></span></p>
-  </td>
-  <td width=84 valign=top style='width:63.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>Password Flag<o:p></o:p></span></p>
-  </td>
-  <td width=85 valign=top style='width:63.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>Will Retain<o:p></o:p></span></p>
-  </td>
-  <td width=95 colspan=2 valign=top style='width:70.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>Will QoS<o:p></o:p></span></p>
-  </td>
-  <td width=76 valign=top style='width:2.0cm;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>Will Flag<o:p></o:p></span></p>
-  </td>
-  <td width=78 valign=top style='width:58.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>Clean Start<o:p></o:p></span></p>
-  </td>
-  <td width=71 valign=top style='width:53.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>Reserved<o:p></o:p></span></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:2;mso-yfti-lastrow:yes'>
-  <td width=65 valign=top style='width:48.55pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>byte
-  8<o:p></o:p></span></p>
-  </td>
-  <td width=85 valign=top style='width:63.65pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>X<o:p></o:p></span></p>
-  </td>
-  <td width=84 valign=top style='width:63.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>X<o:p></o:p></span></p>
-  </td>
-  <td width=85 valign=top style='width:63.8pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>X<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>X<o:p></o:p></span></p>
-  </td>
-  <td width=47 valign=top style='width:35.45pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>X<o:p></o:p></span></p>
-  </td>
-  <td width=76 valign=top style='width:2.0cm;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>X<o:p></o:p></span></p>
-  </td>
-  <td width=78 valign=top style='width:58.3pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>X<o:p></o:p></span></p>
-  </td>
-  <td width=71 valign=top style='width:53.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-  style='font-family:"Arial","sans-serif"'>0<o:p></o:p></span></p>
-  </td>
- </tr>
+<table align="center">
+  <tr>
+    <th>Bit</th>
+	<th>7</th>
+    <th>6</th>
+    <th>5</th>
+    <th>4</th>
+    <th>3</th>
+    <th>2</th>
+    <th>1</th>
+    <th>0</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td>User Name Flag</td>
+	<td>Password Flag</td>
+	<td>Will Retain</td>
+	<td colspan="2">Will QoS</td>
+	<td>Will Flag</td>
+	<td>Clean Start</td>
+	<td>Reserved</td>
+  </tr>
+  <tr>
+    <td>byte 8</td>
+    <td align="center">X</td>
+    <td align="center">X</td>
+    <td align="center">X</td>
+    <td align="center">X</td>
+  	<td align="center">X</td>
+  	<td align="center">X</td>
+  	<td align="center">X</td>
+  	<td align="center">0</td>
+  </tr>
 </table>
 
 服务端**必须**验证CONNECT控制报文的保留标志位（第0位）是否为0 \[MQTT-3.1.2-3\]，如果不为0则此报文为无效报文。4.13节给出了错误处理信息。
