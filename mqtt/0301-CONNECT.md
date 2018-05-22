@@ -438,7 +438,7 @@ CONNECT报文可变报头中的属性（Properties）长度被编码为变长字
 
 ##### 3.1.2.11.9 认证方法 Authentication Method
 
-**21 (0x15)**，认证方法（Authentication Method）标识符。
+**21 (0x15)**，认证方法（Authentication Method）标识符。  
 跟随其后的是一个UTF-8编码的字符串，包含了扩展认证的认证方法（Authentication Method）名称。包含多个认证方法将造成协议错误（协议错误）。
 如果没有认证方法，则不进行扩展验证。参考4.12节。
 
@@ -446,7 +446,7 @@ CONNECT报文可变报头中的属性（Properties）长度被编码为变长字
 
 ##### 3.1.2.11.10 认证数据 Authentication Data
 
-**22 (0x16)**，认证数据（Authentication Data）标识符。
+**22 (0x16)**，认证数据（Authentication Data）标识符。  
 跟随其后的是二进制的认证数据。没有认证方法却包含了认证数据（Authentication Data），或者包含多个认证数据（Authentication Data）将造成协议错误（Protocol Error）。 
 
 认证数据的内容由认证方法定义，关于扩展认证的更多信息，请参考4.12节。
@@ -1386,8 +1386,7 @@ CONNECT报文的载荷中包含由可变报头（Variable Header）中的标志�
 服务端**必须**允许1到23个字节长的UTF-8编码的客户标识符，客户标识符只能包含这些字符：
 "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"（大写字母、小写字母和数字） \[MQTT-3.1.3-5\]。
 
-服务端**可以**允许编码后超过23个字节的客户标识符 (ClientID)。服务端**可以**允许包含不是上面列表字符
-的客户标识符 (ClientID)。
+服务端**可以**允许编码后超过23个字节的客户标识符 (ClientID)。服务端**可以**允许包含不是上面列表字符的客户标识符 (ClientID)。
 
 服务端**可以**允许客户端提供一个零字节的客户标识符 (ClientID) ，如果这样做了，服务端**必须**将这看作特殊情况并分配唯一的客户标识符给那个客户端 \[MQTT-3.1.3-6\]。然后它**必须**假设客户端提供了那个唯一的客户标识符，正常处理这个CONNECT报文 \[MQTT-3.1.3-7\]。
 
