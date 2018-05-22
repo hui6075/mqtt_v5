@@ -226,7 +226,7 @@ Gulbrandsen, A., Vixie, P., and L. Esibov, "A DNS RR for specifying the location
 
 除非另有说明，所有的UTF-8编码字符串的长度都在0到65535字节这个范围内。
 
-##### 图 1.1 UTF-8编码字符串的结构 Structure of UTF-8 encoded strings
+##### 图 1-1 - UTF-8编码字符串的结构 Structure of UTF-8 encoded strings
 
 <table>
   <tr>
@@ -271,7 +271,7 @@ UTF-8编码序列0XEF 0xBB 0xBF总是被解释为U+FEFF（零宽度非换行空�
 
 > 例如，字符串 A𪛔 是一个拉丁字母A后面跟着一个代码点U+2A6D4(它表示一个中日韩统一表意文字扩展B中的字符)，这个字符串编码如下：
 
-##### 图 1.2 UTF-8编码字符串非规范示例 UTF-8 encoded string non normative example
+##### 图 1-2 - UTF-8编码字符串非规范示例 UTF-8 encoded string non normative example
 
 <table>
   <tr>
@@ -395,6 +395,8 @@ UTF-8编码序列0XEF 0xBB 0xBF总是被解释为U+FEFF（零宽度非换行空�
 ### 1.5.5 变长字节整数 Variable Byte Integer
 
 剩余长度字段使用一个变长字节编码方案，对小于 128 的值它使用单字节编码。更大的值按下面的方式处理。低 7 位有效位用于编码数据，最高有效位用于指示是否有更多的字节。因此每个字节可以编码 128 个数值和一个延续位（continuation bit）。剩余长度字段最大 4 个字节[MQTT-1.5.5-1]，如表 1-1 所示。
+
+表 1-1 - 变长字节整数大小 Size of Variable Byte Integer
 
 <table>
   <tr>

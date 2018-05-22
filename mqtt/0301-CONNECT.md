@@ -8,7 +8,7 @@
 
 ### 3.1.1 CONNECT 固定报头 CONNECT Fixed header
 
-##### 图 3.1 – CONNECT报文的固定报头 CONNECT packet Fixed Header
+##### 图 3-1 – CONNECT报文的固定报头 CONNECT packet Fixed Header
 
 <table style="text-align:center">
    <tr>
@@ -54,7 +54,7 @@ CONNECT 报文的可变报头按下列次序包含四个字段：协议名（Pro
 
 #### 3.1.2.1 协议名 Protocol Name
 
-##### 图 3.2 - 协议名字节 Protocol Name bytes
+##### 图 3-2 - 协议名字节 Protocol Name bytes
 
 <table>
   <tr>
@@ -156,7 +156,7 @@ CONNECT 报文的可变报头按下列次序包含四个字段：协议名（Pro
 
 #### 3.1.2.2 协议版本 Protocol Version
 
-##### 图 3.3 - 协议级别字节 Protocol Version byte
+##### 图 3-3 - 协议级别字节 Protocol Version byte
 
 <table>
   <tr>
@@ -196,7 +196,7 @@ CONNECT 报文的可变报头按下列次序包含四个字段：协议名（Pro
 
 连接标志字节包含一些用于指定MQTT连接行为的参数。它还指出有效载荷中的字段是否存在。
 
-##### 图 3.4 - 连接标志位 Connect Flag bits
+##### 图 3-4 - 连接标志位 Connect Flag bits
 
 <table>
   <tr>
@@ -302,7 +302,7 @@ CONNECT 报文的可变报头按下列次序包含四个字段：协议名（Pro
 
 #### 3.1.2.10 保持连接 Keep Alive
 
-##### 图 3.5 - 保持连接字节 Keep Alive bytes
+##### 图 3-5 - 保持连接字节 Keep Alive bytes
 
 <table>
   <tr>
@@ -488,7 +488,7 @@ CONNECT报文可变报头中的属性（Properties）长度被编码为变长字
 
 #### 3.1.2.12 可变报头非规范示例 Variable Header non-normative example
 
-##### 图 3.6 - 可变报头示例
+##### 图 3-6 - 可变报头示例
 
 <table>
   <tr>

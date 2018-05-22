@@ -29,7 +29,7 @@
 
 本规范请求IANA在WebSocket子协议名条目下注册WebSocket MQTT子协议，使用下列数据：
 
-##### 图例 6.1 - IANA WebSocket标识符
+##### 图例 6-1 - IANA WebSocket标识符 IANA WebSocket Identifier
 
 <table>
   <tr>

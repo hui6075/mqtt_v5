@@ -18,7 +18,7 @@ MQTT协议通过交换预定义的MQTT控制报文来通信。这一节描述这
 
 MQTT控制报文由三部分组成，按照下图描述的顺序：
 
-##### 图 2-1 MQTT控制报文的结构 Structure of an MQTT Control Packet
+##### 图 2-1 - MQTT控制报文的结构 Structure of an MQTT Control Packet
 
 <table>
   <tr>
@@ -36,7 +36,7 @@ MQTT控制报文由三部分组成，按照下图描述的顺序：
 
 如下图所示，每个 MQTT 控制报文都包含一个固定报头。
 
-##### 图 2-2 固定报头的格式 Fixed Header format
+##### 图 2-2 - 固定报头的格式 Fixed Header format
 
 <table style="text-align:center">
   <tr>
@@ -67,32 +67,118 @@ MQTT控制报文由三部分组成，按照下图描述的顺序：
 
 表示为4位无符号值，这些值的定义见下表。
 
-##### 表 2-1 MQTT控制报文的类型 MQTT Control Packet types
+##### 表 2-1 - MQTT控制报文的类型 MQTT Control Packet types
 
-| **名字**    | **值** | **报文流动方向** | **描述**                            |
-|-------------|--------|------------------|-------------------------------------|
-| Reserved    | 0      | 禁止             | 保留                                
-| CONNECT     | 1      | 客户端到服务端   | 客户端请求连接服务端                
-| CONNACK     | 2      | 服务端到客户端   | 连接报文确认                        
-| PUBLISH     | 3      | 两个方向都允许   | 发布消息                            
-| PUBACK      | 4      | 两个方向都允许   | QoS 1消息发布收到确认               
-| PUBREC      | 5      | 两个方向都允许   | 发布收到（保证交付第一步）          |
-| PUBREL      | 6      | 两个方向都允许   | 发布释放（保证交付第二步）          |
-| PUBCOMP     | 7      | 两个方向都允许   | QoS 2消息发布完成（保证交互第三步） |
-| SUBSCRIBE   | 8      | 客户端到服务端   | 客户端订阅请求                      
-| SUBACK      | 9      | 服务端到客户端   | 订阅请求报文确认                    
-| UNSUBSCRIBE | 10     | 客户端到服务端   | 客户端取消订阅请求                  
-| UNSUBACK    | 11     | 服务端到客户端   | 取消订阅报文确认                    
-| PINGREQ     | 12     | 客户端到服务端   | 心跳请求                            
-| PINGRESP    | 13     | 服务端到客户端   | 心跳响应                            
-| DISCONNECT  | 14     | 两个方向都允许   | 断开连接通知                        
-| AUTH        | 15     | 两个方向都允许   | 认证信息交换                        
+<table>
+  <tr>
+    <th>名字</th>
+    <th>值</th>
+    <th>报文流动方向</th>
+	<th>描述</th>
+  </tr>
+  <tr>
+    <td>Reserved</td>
+	<td>0</td>
+	<td>禁止</td>
+	<td>保留</td>
+  </tr>
+  <tr>
+    <td>CONNECT</td>
+	<td>1</td>
+	<td>客户端到服务端</td>
+	<td>客户端请求连接服务端</td>
+  </tr>
+  <tr>
+    <td>CONNACK</td>
+	<td>2</td>
+	<td>服务端到客户端</td>
+	<td>连接报文确认</td>
+  </tr>
+  <tr>
+    <td>PUBLISH</td>
+	<td>3</td>
+	<td>两个方向都允许</td>
+	<td>发布消息</td>
+  </tr>
+  <tr>
+    <td>PUBACK</td>
+	<td>4</td>
+	<td>两个方向都允许</td>
+	<td>QoS 1消息发布收到确认</td>
+  </tr>
+  <tr>
+    <td>PUBREC</td>
+	<td>5</td>
+	<td>两个方向都允许</td>
+	<td>发布收到（保证交付第一步）</td>
+  </tr>
+  <tr>
+    <td>PUBREL</td>
+	<td>6</td>
+	<td>两个方向都允许</td>
+	<td>发布释放（保证交付第二步）</td>
+  </tr>
+  <tr>
+    <td>PUBCOMP</td>
+	<td>7</td>
+	<td>两个方向都允许</td>
+	<td>QoS 2消息发布完成（保证交互第三步）</td>
+  </tr>
+  <tr>
+    <td>SUBSCRIBE</td>
+	<td>8</td>
+	<td>客户端到服务端</td>
+	<td>客户端订阅请求</td>
+  </tr>
+  <tr>
+    <td>SUBACK</td>
+	<td>9</td>
+	<td>服务端到客户端</td>
+	<td>订阅请求报文确认</td>
+  </tr>
+  <tr>
+    <td>UNSUBSCRIBE</td>
+	<td>10</td>
+	<td>客户端到服务端</td>
+	<td>客户端取消订阅请求</td>
+  </tr>
+  <tr>
+    <td>UNSUBACK</td>
+	<td>11</td>
+	<td>服务端到客户端</td>
+	<td>取消订阅报文确认</td>
+  </tr>
+  <tr>
+    <td>PINGREQ</td>
+	<td>12</td>
+	<td>客户端到服务端</td>
+	<td>心跳请求</td>
+  </tr>
+  <tr>
+    <td>PINGRESP</td>
+	<td>13</td>
+	<td>服务端到客户端</td>
+	<td>心跳响应</td>
+  </tr>
+  <tr>
+    <td>DISCONNECT</td>
+	<td>14</td>
+	<td>两个方向都允许</td>
+	<td>断开连接通知</td>
+  </tr>
+  <tr>
+    <td>AUTH</td>
+	<td>15</td>
+	<td>两个方向都允许</td>
+	<td>认证信息交换</td>
+  </tr>
+<table>                        
 
 ### 2.1.3 标志 Flags
 
 固定报头第1个字节的剩余的4位 \[3-0\]包含每个 MQTT 控制报文类型特定的标志如下表所示。表格中任何标记为“保留”的标志位，都是保留给以后使用的，**必须**设置为表格中列出的值 \[MQTT-2.1.3-1\]。如果收到非法的标志，此报文被当做无效报文。有关错误处理的详细信息见 4.8节 \[MQTT-2.2.2-2\]。
 
-##### 表 2-2 标志位 Flag Bits
+##### 表 2-2 - 标志位 Flag Bits
 
 <table>
   <tr>
@@ -244,25 +330,74 @@ PUBLISH控制报文中的DUP, QoS和RETAIN标志的描述见 3.3.1节。
 
 需要报文标识符的MQTT控制报文如下表所示。
 
-##### 表 2-3 包含报文标识符的MQTT控制报文 MQTT Control Packets that contain a Packet Identifier
+##### 表 2-3 - 包含报文标识符的MQTT控制报文 MQTT Control Packets that contain a Packet Identifier
 
-| **MQTT控制报文** | **报文标识符字段**     |
-|------------------|------------------------|
-| CONNECT          | 不需要                 |
-| CONNACK          | 不需要                 |
-| PUBLISH          | 需要（如果QoS > 0） |
-| PUBACK           | 需要                   |
-| PUBREC           | 需要                   |
-| PUBREL           | 需要                   |
-| PUBCOMP          | 需要                   |
-| SUBSCRIBE        | 需要                   |
-| SUBACK           | 需要                   |
-| UNSUBSCRIBE      | 需要                   |
-| UNSUBACK         | 需要                   |
-| PINGREQ          | 不需要                 |
-| PINGRESP         | 不需要                 |
-| DISCONNECT       | 不需要                 |
-| AUTH             | 不需要                 |
+<table>
+  <tr>
+    <th>名字</th>
+    <th>值</th>
+  </tr>
+  <tr>
+    <td>CONNECT</td>
+    <td>不需要</td>
+  </tr>
+  <tr>
+    <td>CONNACK</td>
+    <td>不需要</td>
+  </tr>
+  <tr>
+    <td>PUBLISH</td>
+    <td>需要（如果QoS>0）</td>
+  </tr>
+  <tr>
+    <td>PUBACK</td>
+    <td>需要</td>
+  </tr>
+  <tr>
+    <td>PUBREC</td>
+    <td>需要</td>
+  </tr>
+  <tr>
+    <td>PUBREL</td>
+    <td>需要</td>
+  </tr>
+  <tr>
+    <td>PUBCOMP</td>
+    <td>需要</td>
+  </tr>
+  <tr>
+    <td>SUBSCRIBE</td>
+    <td>需要</td>
+  </tr>
+  <tr>
+    <td>SUBACK</td>
+    <td>需要</td>
+  </tr>
+  <tr>
+    <td>UNSUBSCRIBE</td>
+    <td>需要</td>
+  </tr>
+  <tr>
+    <td>UNSUBACK</td>
+    <td>需要</td>
+  </tr>
+  <tr>
+    <td>PINGREQ</td>
+    <td>不需要</td>
+  </tr>
+  <tr>
+    <td>PINGRESP</td>
+    <td>不需要</td>
+  </tr>
+  <tr>
+    <td>DISCONNECT</td>
+    <td>不需要</td>
+  </tr>
+  <tr>
+    <td>AUTH</td>
+    <td>不需要</td>
+  </tr>
+<table>
 
 QoS 设置为 0 的 PUBLISH 报文**不能**包含报文标识符[MQTT-2.2.1-2]。
 
@@ -315,7 +450,7 @@ CONNECT，CONNACK，PUBLISH，PUBACK，PUBREC，PUBREL，PUBCOMP，SUBSCRIBE，S
 
 一个属性包含一段数据和一个定义了属性用途和数据类型的标识符。标识符被编码为变长字节整数。任何控制报文，如果包含了：对于该报文类型无效的标识符，或者错误类型的数据，都是无效报文。收到无效报文时，服务端或客户端使用包含原因码0x81（无效报文）CONNACK或DISCONNECT报文进行错误处理，如4.13节 所述。标识符排序不分先后。
 
-##### 表 2-4 属性 Properties
+##### 表 2-4 - 属性 Properties
 
 <table>
   <tr>
@@ -530,23 +665,72 @@ CONNECT，CONNACK，PUBLISH，PUBACK，PUBREC，PUBREL，PUBCOMP，SUBSCRIBE，S
 
 ##### 表 2-5 包含有效载荷的MQTT控制报文 MQTT Control Packets that contain a Payload
 
-| **MQTT控制报文** | **有效载荷** |
-|------------------|--------------|
-| CONNECT          | 需要         |
-| CONNACK          | 不需要       |
-| PUBLISH          | 可选         |
-| PUBACK           | 不需要       |
-| PUBREC           | 不需要       |
-| PUBREL           | 不需要       |
-| PUBCOMP          | 不需要       |
-| SUBSCRIBE        | 需要         |
-| SUBACK           | 需要         |
-| UNSUBSCRIBE      | 需要         |
-| UNSUBACK         | 需要         |
-| PINGREQ          | 不需要       |
-| PINGRESP         | 不需要       |
-| DISCONNECT       | 不需要       |
-| AUTH             | 不需要       |
+<table>
+  <tr>
+    <th>MQTT控制报文</th>
+    <th>有效载荷</th>
+  </tr>
+  <tr>
+    <td>CONNECT</td>
+	<td>需要</td>
+  </tr>
+  <tr>
+    <td>CONNACK</td>
+	<td>不需要</td>
+  </tr>
+  <tr>
+    <td>PUBLISH</td>
+	<td>可选</td>
+  </tr>
+  <tr>
+    <td>PUBACK</td>
+	<td>不需要</td>
+  </tr>
+  <tr>
+    <td>PUBREC</td>
+	<td>不需要</td>
+  </tr>
+  <tr>
+    <td>PUBREL</td>
+	<td>不需要</td>
+  </tr>
+  <tr>
+    <td>PUBCOMP</td>
+	<td>不需要</td>
+  </tr>
+  <tr>
+    <td>SUBSCRIBE</td>
+	<td>需要</td>
+  </tr>
+  <tr>
+    <td>SUBACK</td>
+	<td>需要</td>
+  </tr>
+  <tr>
+    <td>UNSUBSCRIBE</td>
+	<td>需要</td>
+  </tr>
+  <tr>
+    <td>UNSUBACK</td>
+	<td>需要</td>
+  </tr>
+  <tr>
+    <td>PINGREQ</td>
+	<td>不需要</td>
+  </tr>
+  <tr>
+    <td>PINGRESP</td>
+	<td>不需要</td>
+  </tr>
+  <tr>
+    <td>DISCONNECT</td>
+	<td>不需要</td>
+  </tr>
+  <tr>
+    <td>AUTH</td>
+	<td>不需要</td>
+  </tr>
+<table>
 
 ## 2.4 原因码 Reason Code
 
@@ -556,7 +740,7 @@ CONNACK，PUBACK，PUBREC，PUBREL，PUBCOMP，DISCONNECT和AUTH控制报文的�
 
 原因码如下表所示。
 
-##### 表 2-6 原因码 Reason Code
+##### 表 2-6 - 原因码 Reason Code
 
 <table>
   <tr>

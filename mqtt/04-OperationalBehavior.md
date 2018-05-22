@@ -83,7 +83,7 @@ MQTT按照后面章节定义的服务质量（QoS）等级分发应用消息。�
 
 -   接受PUBLISH报文时同时接受消息的所有权。
 
-##### 图 4.1 – QoS等级0协议流程图，非规范示例 QoS 0 protocol flow diagram, non-normative example
+##### 图 4-1 - QoS等级0协议流程图，非规范示例 QoS 0 protocol flow diagram, non-normative example
 
 <table>
   <tr>
@@ -127,7 +127,7 @@ MQTT按照后面章节定义的服务质量（QoS）等级分发应用消息。�
 -   响应的PUBACK报文**必须**包含一个报文标识符，这个标识符来自接收到的、已经接受所有权的PUBLISH报文 \[MQTT-4.3.2-4\]。
 -   发送了PUBACK报文之后，接收端**必须**将任何包含相同报文标识符的入站PUBLISH报文当做一个新的消息，并忽略它的DUP标志的值 \[MQTT-4.3.2-5\]。
 
-##### 图 4.2 – QoS 1协议流程图，非规范示例 QoS 1 protocol flow diagram, non-normative example
+##### 图 4-2 - QoS 1协议流程图，非规范示例 QoS 1 protocol flow diagram, non-normative example
 
 <table>
   <tr>
@@ -197,7 +197,7 @@ QoS等2消息可变报头中有报文标识符。2.2.1节 提供了有关报文�
 
 如果收到包含原因码大于等于0x80的PUBACK或PUBREC，则对应的PUBLISH报文被看作已确认，且**不能**被重传 \[MQTT-4.4.0-2\]。
 
-##### 图 4.3 – QoS 2协议流程图，非规范示例 QoS 2 protocol flow diagram, non-normative example
+##### 图 4-3 - QoS 2协议流程图，非规范示例 QoS 2 protocol flow diagram, non-normative example
 
 <table>
   <tr>
