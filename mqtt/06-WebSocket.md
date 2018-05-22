@@ -13,7 +13,7 @@
 - [附录C - MQTT v5.0新特性总结（非规范）](09-AppendixC.md)
 
 
-如果MQTT在WebSocket [\[RFC6455\]](#RFC6455) 连接上传输，**必须**满足下面的条件：
+如果MQTT在WebSocket [\[RFC6455\]](http://www.rfc-editor.org/info/rfc6455) 连接上传输，**必须**满足下面的条件：
 
 -   MQTT控制报文**必须**使用WebSocket二进制数据帧发送。如果收到任何其它类型的数据帧，接收者**必须**关闭网络连接 \[MQTT-6.0.0-1\]。
 
@@ -31,10 +31,20 @@
 
 ##### 图例 6.1 - IANA WebSocket标识符
 
-| 子协议标识符   | mqtt                                                           |
-|----------------|----------------------------------------------------------------|
-| 子协议通用名   | mqtt                                                           |
-| 子协议定义     | http://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html |
+<table>
+  <tr>
+    <td width="148">子协议标识符</td>
+    <td width="546">mqtt</td>
+  </tr>
+  <tr>
+    <td>子协议通用名</td>
+    <td>mqtt</td>
+  </tr>
+  <tr>
+    <td>子协议定义</td>
+    <td>http://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html</td>
+  </tr>
+</table>
 
 ### 项目主页
 
