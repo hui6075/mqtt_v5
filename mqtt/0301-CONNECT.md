@@ -56,15 +56,95 @@ CONNECT 报文的可变报头按下列次序包含四个字段：协议名（Pro
 
 ##### 图 3.2 - 协议名字节 Protocol Name bytes
 
-|        | **说明**     | **7** | **6** | **5** | **4** | **3** | **2** | **1** | **0** |
-|--------|--------------|-------|-------|-------|-------|-------|-------|-------|-------|
-| 协议名 |
-| byte 1 | 长度 MSB (0) | 0     | 0     | 0     | 0     | 0     | 0     | 0     | 0     |
-| byte 2 | 长度 LSB (4) | 0     | 0     | 0     | 0     | 0     | 1     | 0     | 0     |
-| byte 3 | ‘M’          | 0     | 1     | 0     | 0     | 1     | 1     | 0     | 1     |
-| byte 4 | ‘Q’          | 0     | 1     | 0     | 1     | 0     | 0     | 0     | 1     |
-| byte 5 | ‘T’          | 0     | 1     | 0     | 1     | 0     | 1     | 0     | 0     |
-| byte 6 | ‘T’          | 0     | 1     | 0     | 1     | 0     | 1     | 0     | 0     |
+<table>
+  <tr>
+    <th></th>
+    <th>说明</th>
+	<th>7</th>
+    <th>6</th>
+    <th>5</th>
+    <th>4</th>
+    <th>3</th>
+    <th>2</th>
+    <th>1</th>
+    <th>0</th>
+  </tr>
+  <tr>
+    <td colspan="10">协议名</td>
+  </tr>
+  <tr>
+    <td>byte 1</td>
+    <td>长度MSB (0)</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>byte 2</td>
+    <td>长度LSB (4)</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>byte 3</td>
+    <td>‘M’</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+  </tr>
+  <tr>
+    <td>byte 4</td>
+    <td>‘Q’</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+  </tr>
+  <tr>
+    <td>byte 5</td>
+    <td>‘T’</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>byte 6</td>
+    <td>‘T’</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+</table>
 
 协议名是表示协议名*MQTT*的UTF-8编码的字符串。MQTT规范的后续版本不会改变这个字符串的偏移和长度。
 
@@ -286,92 +366,26 @@ CONNECT 报文的可变报头按下列次序包含四个字段：协议名（Pro
 
 ##### 图 3.5 - 保持连接字节 Keep Alive bytes
 
-<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
- style='border-collapse:collapse;mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
- <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
-  <td width=70 valign=top style='width:52.85pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>Bit</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
-  mso-bidi-font-size:10.0pt;font-family:"Arial","sans-serif";color:#3B006F;
-  mso-font-kerning:16.0pt'><o:p></o:p></span></b></p>
-  </td>
-  <td width=75 valign=top style='width:56.05pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>7</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
-  mso-bidi-font-size:10.0pt;font-family:"Arial","sans-serif";color:#3B006F;
-  mso-font-kerning:16.0pt'><o:p></o:p></span></b></p>
-  </td>
-  <td width=72 valign=top style='width:54.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>6</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
-  mso-bidi-font-size:10.0pt;font-family:"Arial","sans-serif";color:#3B006F;
-  mso-font-kerning:16.0pt'><o:p></o:p></span></b></p>
-  </td>
-  <td width=72 valign=top style='width:54.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>5</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
-  mso-bidi-font-size:10.0pt;font-family:"Arial","sans-serif";color:#3B006F;
-  mso-font-kerning:16.0pt'><o:p></o:p></span></b></p>
-  </td>
-  <td width=72 valign=top style='width:54.0pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>4</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
-  mso-bidi-font-size:10.0pt;font-family:"Arial","sans-serif";color:#3B006F;
-  mso-font-kerning:16.0pt'><o:p></o:p></span></b></p>
-  </td>
-  <td width=66 valign=top style='width:49.5pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>3</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
-  mso-bidi-font-size:10.0pt;font-family:"Arial","sans-serif";color:#3B006F;
-  mso-font-kerning:16.0pt'><o:p></o:p></span></b></p>
-  </td>
-  <td width=69 valign=top style='width:51.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>2</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
-  mso-bidi-font-size:10.0pt;font-family:"Arial","sans-serif";color:#3B006F;
-  mso-font-kerning:16.0pt'><o:p></o:p></span></b></p>
-  </td>
-  <td width=71 valign=top style='width:52.9pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>1</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
-  mso-bidi-font-size:10.0pt;font-family:"Arial","sans-serif";color:#3B006F;
-  mso-font-kerning:16.0pt'><o:p></o:p></span></b></p>
-  </td>
-  <td width=71 valign=top style='width:53.6pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><b><span lang=EN-US style='font-family:"Arial","sans-serif"'>0</span></b><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
-  mso-bidi-font-size:10.0pt;font-family:"Arial","sans-serif";color:#3B006F;
-  mso-font-kerning:16.0pt'><o:p></o:p></span></b></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:1'>
-  <td width=70 valign=top style='width:52.85pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>byte
-  9<o:p></o:p></span></p>
-  </td>
-  <td width=568 colspan=8 valign=top style='width:425.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>保持连接</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>Keep Alive MSB</span><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
-  mso-bidi-font-size:10.0pt;font-family:"Arial","sans-serif";color:#3B006F;
-  mso-font-kerning:16.0pt'><o:p></o:p></span></b></p>
-  </td>
- </tr>
- <tr style='mso-yfti-irow:2;mso-yfti-lastrow:yes'>
-  <td width=70 valign=top style='width:52.85pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span lang=EN-US style='font-family:"Arial","sans-serif"'>byte
-  10<o:p></o:p></span></p>
-  </td>
-  <td width=568 colspan=8 valign=top style='width:425.95pt;padding:0cm 5.4pt 0cm 5.4pt'>
-  <p class=MsoNormal><span style='font-family:黑体;mso-ascii-font-family:Arial;
-  mso-hansi-font-family:Arial;mso-fareast-language:ZH-CN'>保持连接</span><span
-  lang=EN-US style='font-family:"Arial","sans-serif"'>Keep Alive LSB</span><b
-  style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:12.0pt;
-  mso-bidi-font-size:10.0pt;font-family:"Arial","sans-serif";color:#3B006F;
-  mso-font-kerning:16.0pt'><o:p></o:p></span></b></p>
-  </td>
- </tr>
+<table>
+  <tr>
+    <th>Bit</th>
+    <th>7</th>
+    <th>6</th>
+    <th>5</th>
+    <th>4</th>
+    <th>3</th>
+    <th>2</th>
+    <th>1</th>
+    <th>0</th>
+  </tr>
+  <tr>
+    <td>byte 9</td>
+    <td colspan="8">保持连接Keep Alive MSB</td>
+  </tr>
+  <tr>
+    <td>byte 10</td>
+    <td colspan="8">保持连接Keep Alive LSB</td>
+  </tr>
 </table>
 
 保持连接（Keep Alive）使用双字节整数来表示以秒为单位的时间间隔。它是指在客户端传输完成一个MQTT控制报文的时刻到发送下一个报文的时刻，两者之间允许空闲的最大时间间隔。客户端负责保证控制报文发送的时间间隔不超过保持连接的值。如果没有任何其它的MQTT控制报文可以发送，客户端**必须**发送一个PINGREQ 报文 \[MQTT-3.1.2-20\]。
