@@ -71,7 +71,7 @@ MQTT协议要求基础传输层能够提供有序的、可靠的、双向传输�
 
 MQTT按照后面章节定义的服务质量（QoS）等级分发应用消息。分发协议是对称的，在下面的描述中，客户端和服务端既可以是发送端也可以是接收端。分发协议关注的是从单个发送者到单个接收者的应用消息。服务端分发应用消息给多个客户端时，每个客户端独立处理。分发给客户端的出站应用消息和入站应用消息的QoS等级可能是不同的。
 
-### 4.3.1 QoS 0：最多分发一次
+### 4.3.1 QoS 0：最多分发一次 QoS 0: At most once delivery
 
 消息的分发依赖于底层网络的能力。接收端不会发送响应，发送端也不会重试。消息可能送达一次也可能根本没送达。 
 
@@ -83,15 +83,32 @@ MQTT按照后面章节定义的服务质量（QoS）等级分发应用消息。�
 
 -   接受PUBLISH报文时同时接受消息的所有权。
 
-##### 图 4.1 – QoS等级0协议流程图，非规范示例
+##### 图 4.1 – QoS等级0协议流程图，非规范示例 QoS 0 protocol flow diagram, non-normative example
 
-| **发送者动作**            | **控制报文**   | **接收者动作**                       |
-|---------------------------|----------------|--------------------------------------|
-| PUBLISH 报文 QoS 0, DUP=0 |                |                                      |
-|                           | ----------&gt; |                                      |
-|                           |                | 分发应用消息给适当的后续接收者（们） |
+<table>
+  <tr>
+    <th width="280">发送端动作</th>
+    <th width="150">控制报文</th>
+    <th width="280">接收端动作</th>
+  </tr>
+  <tr>
+    <td align="center">PUBLISH报文QoS 0, DUP=0</td>
+	<td></td>
+	<td></td>
+  </tr>
+  <tr>
+    <td></td>
+	<td align="center">----------></td>
+	<td></td>
+  </tr>
+  <tr>
+    <td></td>
+	<td></td>
+	<td align="center">分发应用消息给适当的后续接收者（们）</td>
+  </tr>
+</table>
 
-### 4.3.2 QoS 1: 至少分发一次
+### 4.3.2 QoS 1: 至少分发一次 QoS 1: At least once delivery
 
 服务质量等级1确保消息至少送达一次。QoS等级1的PUBLISH报文的可变报头中包含一个报文标识符，需要PUBACK 报文确认。2.2.1节提供了有关报文标识符的更多信息。
 
@@ -110,19 +127,44 @@ MQTT按照后面章节定义的服务质量（QoS）等级分发应用消息。�
 -   响应的PUBACK报文**必须**包含一个报文标识符，这个标识符来自接收到的、已经接受所有权的PUBLISH报文 \[MQTT-4.3.2-4\]。
 -   发送了PUBACK报文之后，接收端**必须**将任何包含相同报文标识符的入站PUBLISH报文当做一个新的消息，并忽略它的DUP标志的值 \[MQTT-4.3.2-5\]。
 
-##### 图 4.2 – QoS 1协议流程图，非规范示例
+##### 图 4.2 – QoS 1协议流程图，非规范示例 QoS 1 protocol flow diagram, non-normative example
 
-| **发送者动作**                             | **控制报文**   | **接收者动作**                     |
-|--------------------------------------------|----------------|------------------------------------|
-| 存储消息                                   |                |                                    |
-| 发送PUBLISH报文 QoS=1, DUP=0，带报文标识符 | ----------&gt; |                                    |
-|                                            |                | 开始应用消息的后续分发<sup>1</sup> |
-|                                            | &lt;---------- | 发送PUBACK报文，带报文标识符       |
-| 丢弃消息                                   |                |                                    |
+<table>
+  <tr>
+    <th width="280">发送端动作</th>
+    <th width="150">控制报文</th>
+    <th width="280">接收端动作</th>
+  </tr>
+  <tr>
+    <td align="center">存储消息</td>
+	<td align="center"></td>
+	<td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center">发送PUBLISH报文QoS=1，DUP=0，带报文标识符</td>
+	<td align="center">----------></td>
+	<td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center"></td>
+	<td align="center"></td>
+	<td align="center">开始应用消息的后续分发<sup>1</sup></td>
+  </tr>
+  <tr>
+    <td align="center"></td>
+	<td align="center"><----------</td>
+	<td align="center">发送PUBACK报文，带报文标识符</td>
+  </tr>
+  <tr>
+    <td align="center">丢弃消息</td>
+	<td align="center"></td>
+	<td align="center"></td>
+  </tr>
+</table>
 
 > <sup>1</sup>不要求接收端在发送 PUBACK 之前完整分发应用消息。原来的发送端收到 PUBACK 报文之后，应用消息的所有权就会转移给这个接收端。
 
-### 4.3.3 QoS 2：仅分发一次
+### 4.3.3 QoS 2：仅分发一次 QoS 2: Exactly once delivery
 
 这是最高等级的服务质量，消息丢失和重复都是不可接受的。使用这个服务质量等级会有额外的开销。
 
@@ -155,23 +197,80 @@ QoS等2消息可变报头中有报文标识符。2.2.1节 提供了有关报文�
 
 如果收到包含原因码大于等于0x80的PUBACK或PUBREC，则对应的PUBLISH报文被看作已确认，且**不能**被重传 \[MQTT-4.4.0-2\]。
 
-##### 图 4.3 – QoS 2协议流程图，非规范示例
+##### 图 4.3 – QoS 2协议流程图，非规范示例 QoS 2 protocol flow diagram, non-normative example
 
-| **发送者动作**                              | **控制报文**   | **接收者动作**                                                                       |
-|---------------------------------------------|----------------|--------------------------------------------------------------------------------------|
-| 存储消息                                    |                |                                                                                      |
-| 发送PUBLISH报文，QoS=2, DUP=0，带报文标识符 |                |                                                                                      |
-|                                             | ----------&gt; |                                                                                      |
-|                                             |                | 存储报文标识符，然后启动应用消息的向前分发<sup>1</sup>                               |
-|                                             |                | 发送PUBREC报文，带报文标识符和原因码                                                 |
-|                                             | &lt;---------- |                                                                                      |
-| 丢弃消息，存储PUBREC中的报文标识符          |                |                                                                                      |
-| 发送PUBREL报文，带报文标识符                |                |                                                                                      |
-|                                             | ----------&gt; |                                                                                      |
-|                                             |                | 丢弃报文标识符                                                                       |
-|                                             |                | 发送PUBCOMP报文，带报文标识符                                                        |
-|                                             | &lt;---------- |                                                                                      |
-| 丢弃已保存的状态                            |                |                                                                                      |
+<table>
+  <tr>
+    <th width="280">发送端动作</th>
+    <th width="150">控制报文</th>
+    <th width="280">接收端动作</th>
+  </tr>
+  <tr>
+    <td align="center">存储消息</td>
+	<td align="center"></td>
+	<td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center">发送PUBLISH报文QoS=2，DUP=0，带报文标识符</td>
+	<td align="center"></td>
+	<td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center"></td>
+	<td align="center">----------></td>
+	<td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center"></td>
+	<td align="center"></td>
+	<td align="center">存储报文标识符，然后启动应用消息的向前分发<sup>1</sup></td>
+  </tr>
+  <tr>
+    <td align="center"></td>
+	<td align="center"></td>
+	<td align="center">发送PUBREC报文，带报文标识符和原因码</td>
+  </tr>
+  <tr>
+    <td align="center"></td>
+	<td align="center"><----------</td>
+	<td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center">丢弃消息，存储PUBREC中的报文标识符</td>
+	<td align="center"></td>
+	<td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center">发送PUBREL报文，带报文标识符</td>
+	<td align="center"></td>
+	<td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center"></td>
+	<td align="center">----------></td>
+	<td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center"></td>
+	<td align="center"></td>
+	<td align="center">丢弃报文标识符</td>
+  </tr>
+  <tr>
+    <td align="center"></td>
+	<td align="center"></td>
+	<td align="center">发送PUBCOMP报文，带报文标识符</td>
+  </tr>
+  <tr>
+    <td align="center"></td>
+	<td align="center"><----------</td>
+	<td align="center"></td>
+  </tr>
+  <tr>
+    <td align="center">丢弃已保存的状态</td>
+	<td align="center"></td>
+	<td align="center"></td>
+  </tr>
+</table>
 
 > <sup>1</sup> 不要求接收端在发送PUBREC和PUBCOMP之前完整分发应用消息。原始发送端收到PUBREC报文之后，应用消息的所有权就会转移给这个接收端。然而，接收端需要在接受所有权之前执行对所有可能导致转发失败（例如超出配额、权限等）的条件的检查。接收端在PUBREC中使用适当的原因码指示所有权接受成功或失败。
 
