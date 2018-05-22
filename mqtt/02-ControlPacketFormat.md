@@ -282,12 +282,24 @@ PUBACK，PUBREC和PUBREL报文**必须**包含与最初发送的PUBLISH报文相
 >
 > 客户端发送标识符为0x1234的PUBLISH报文，它有可能会在收到那个报文的PUBACK之前，先收到服务端发送的另一个不同的但是报文标识符也为0x1234的PUBLISH报文。
 
-Client | Server
----|---
-PUBLISH | Packet Identifier=0x1234---
---PUBLISH | Packet Identifier=0x1234
-PUBACK | Packet Identifier=0x1234---
---PUBACK | Packet Identifier=0x1234
+<table>
+  <tr>
+    <th>客户端</th>
+    <th>服务端</th>
+  </tr>
+  <tr>
+    <td colspan="2">PUBLISH	Packet Identifier = 0x1234---></td>
+  </tr>
+  <tr>
+    <td colspan="2"><---PUBLISH	Packet Identifier = 0x1234</td>
+  </tr>
+  <tr>
+    <td colspan="2">PUBACK	Packet Identifier = 0x1234---></td>
+  </tr>
+  <tr>
+    <td colspan="2"><---PUBACK	Packet Identifier = 0x1234</td>
+  </tr>
+</table>
 
 ### 2.2.2 属性 Properties
 
