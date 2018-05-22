@@ -226,13 +226,33 @@ Gulbrandsen, A., Vixie, P., and L. Esibov, "A DNS RR for specifying the location
 
 除非另有说明，所有的UTF-8编码字符串的长度都在0到65535字节这个范围内。
 
-##### 图例 1.1 UTF-8编码字符串的结构 Structure of UTF-8 encoded strings
+##### 图 1.1 UTF-8编码字符串的结构 Structure of UTF-8 encoded strings
 
-| **二进制位** | 7-0 |
-|--------------|----------------------------|
-| byte 1       | 字符串长度的最高有效字节（MSB）            |
-| byte 2       | 字符串长度的最低有效字节（LSB）            |
-| byte 3 ….    | 如果长度大于0，这里是UTF-8编码的字符数据。 |
+<table>
+  <tr>
+    <th width=166>二进制位</th>
+    <th width=65>7</th>
+    <th width=65>6</th>
+    <th width=65>5</th>
+    <th width=65>4</th>
+    <th width=65>3</th>
+    <th width=65>2</th>
+    <th width=65>1</th>
+    <th width=65>0</th>
+  </tr>
+  <tr>
+    <td>byte 1</td>
+	<td colspan="9">字符串长度的最高有效字节（MSB）</td>
+  </tr>
+  <tr>
+    <td>byte 2</td>
+	<td colspan="9">字符串长度的最低有效字节（LSB）</td>
+  </tr>
+  <tr>
+    <td>byte 3 ...</td>
+	<td colspan="9">如果长度大于0，这里是UTF-8编码的字符数据。</td>
+  </tr>
+</table>
 
 UTF-8编码字符串中的字符数据**必须**是按照Unicode规范 \[[Unicode](#Unicode)\] 定义的和在RFC3629 \[[RFC3629](#RFC3629)\] 中重申的有效的UTF-8格式。特别需要指出的是，这些数据**不能**包含字符码在U+D800和U+DFFF之间的数据。如果服务端或客户端收到了一个包含无效UTF-8字符的控制报文，它**必须**关闭网络连接  \[MQTT-1.5.3-1\]。
 
@@ -251,35 +271,158 @@ UTF-8编码序列0XEF 0xBB 0xBF总是被解释为U+FEFF（零宽度非换行空�
 
 > 例如，字符串 A𪛔 是一个拉丁字母A后面跟着一个代码点U+2A6D4(它表示一个中日韩统一表意文字扩展B中的字符)，这个字符串编码如下：
 
-##### 图例 1.2 UTF-8编码字符串非规范示例 UTF-8 encoded string non normative example
+##### 图 1.2 UTF-8编码字符串非规范示例 UTF-8 encoded string non normative example
 
-| **Bit** | **7**                 | **6** | **5** | **4** | **3** | **2** | **1** | **0** |
-|---------|-----------------------|-------|-------|-------|-------|-------|-------|-------|
-| byte 1  | 字符串长度 MSB (0x00) |
-|         | 0                     | 0     | 0     | 0     | 0     | 0     | 0     | 0     |
-| byte 2  | 字符串长度 LSB (0x05) |
-|         | 0                     | 0     | 0     | 0     | 0     | 1     | 0     | 1     |
-| byte 3  | ‘A’ (0x41)            |
-|         | 0                     | 1     | 0     | 0     | 0     | 0     | 0     | 1     |
-| byte 4  | (0xF0)                |
-|         | 1                     | 1     | 1     | 1     | 0     | 0     | 0     | 0     |
-| byte 5  | (0xAA)                |
-|         | 1                     | 0     | 1     | 0     | 1     | 0     | 1     | 0     |
-| byte 6  | (0x9B)                |
-|         | 1                     | 0     | 0     | 1     | 1     | 0     | 1     | 1     |
-| byte 7  | (0x94)                |
-|         | 1                     | 0     | 0     | 1     | 0     | 1     | 0     | 0     |
+<table>
+  <tr>
+    <th width=140>比特位</th>
+    <th width=65>7</th>
+    <th width=65>6</th>
+    <th width=65>5</th>
+    <th width=65>4</th>
+    <th width=65>3</th>
+    <th width=65>2</th>
+    <th width=65>1</th>
+    <th width=65>0</th>
+  </tr>
+  <tr>
+    <td>byte 1</td>
+	<td colspan="9" align="center">字符串长度MSB (0x00)</td>
+  </tr>
+  <tr>
+    <td></td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>byte 2</td>
+	<td colspan="9" align="center">字符串长度LSB (0x05)</td>
+  </tr>
+  <tr>
+    <td></td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+  </tr>
+  <tr>
+    <td>byte 3</td>
+	<td colspan="9" align="center">‘A’ (0x41)</td>
+  </tr>
+  <tr>
+    <td></td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+  </tr>
+  <tr>
+    <td>byte 4</td>
+	<td colspan="9" align="center">(0xF0)</td>
+  </tr>
+  <tr>
+    <td></td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>byte 5</td>
+	<td colspan="9" align="center">(0xAA)</td>
+  </tr>
+  <tr>
+    <td></td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+  </tr>
+  <tr>
+    <td>byte 6</td>
+	<td colspan="9" align="center">(0x9B)</td>
+  </tr>
+  <tr>
+    <td></td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>1</td>
+  </tr>
+  <tr>
+    <td>byte 7</td>
+	<td colspan="9" align="center">(0x94)</td>
+  </tr>
+  <tr>
+    <td></td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>1</td>
+	<td>0</td>
+	<td>0</td>
+  </tr>
+</table>
 
 ### 1.5.5 变长字节整数 Variable Byte Integer
 
 剩余长度字段使用一个变长字节编码方案，对小于 128 的值它使用单字节编码。更大的值按下面的方式处理。低 7 位有效位用于编码数据，最高有效位用于指示是否有更多的字节。因此每个字节可以编码 128 个数值和一个延续位（continuation bit）。剩余长度字段最大 4 个字节[MQTT-1.5.5-1]，如表 1-1 所示。
 
-| **字节数** |             **最小值**             |              **最大值**              |
-|------------|------------------------------------|--------------------------------------|
-| 1          | (0x00)                             | 127 (0x7F)                           |
-| 2          | 128 (0x80, 0x01)                   | 16,383 (0xFF, 0x7F)                  |
-| 3          | 16,384 (0x80, 0x80, 0x01)          | 2,097,151 (0xFF, 0xFF, 0x7F)         |
-| 4          | 2,097,152 (0x80, 0x80, 0x80, 0x01) | 268,435,455 (0xFF, 0xFF, 0xFF, 0x7F) |
+<table>
+  <tr>
+    <th width=100>字节数</th>
+    <th>最小值</th>
+    <th>最大值</th>
+  </tr>
+  <tr>
+    <td align="center">1</td>
+	<td>0 (0x00)</td>
+	<td>127 (0x7F)</td>
+  </tr>
+  <tr>
+    <td align="center">2</td>
+	<td>128 (0x80, 0x01)</td>
+	<td>16,383 (0xFF, 0x7F)</td>
+  </tr>
+  <tr>
+    <td align="center">3</td>
+	<td>16,384 (0x80, 0x80, 0x01)</td>
+	<td>2,097,151 (0xFF, 0xFF, 0x7F)</td>
+  </tr>
+  <tr>
+    <td align="center">4</td>
+	<td>2,097,152 (0x80, 0x80, 0x80, 0x01)</td>
+	<td>268,435,455 (0xFF, 0xFF, 0xFF, 0x7F)</td>
+  </tr>
+</table>
 
 #### 非规范示例 Non normative example
 
