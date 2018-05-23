@@ -6,7 +6,7 @@ CONNACK报文由服务端所发送，作为对来自客户端的CONNECT报文的
 
 ### 3.2.1 CONNACK 固定报头 CONNACK Fixed Header
 
-固定报头的格式见图 3-7 的描述。
+固定报头的格式见图 3-7的描述。
 
 ##### 图 3-7 – CONNACK 报文固定报头 CONNACK packet Fixed Header
 
@@ -61,7 +61,7 @@ CONNACK报文由服务端所发送，作为对来自客户端的CONNECT报文的
 
 ### 3.2.2 CONNACK 可变报头 CONNACK Variable Header
 
-CONNACK报文的可变报头按顺序包含以下字段：连接确认标志（Connect Acknowledge Flags），连接原因码（Reason Code），属性（Properties）。属性的编码规则如2.2.2节 所描述。
+CONNACK报文的可变报头按顺序包含以下字段：连接确认标志（Connect Acknowledge Flags），连接原因码（Reason Code），属性（Properties）。属性的编码规则如2.2.2节所描述。
 
 #### 3.2.2.1 连接确认标志 Connect Acknowledge Flags
 
@@ -253,7 +253,7 @@ CONNACK报文可变报头中的属性长度，编码为变长字节整数。
 **17 (0x11)**，会话过期间隔（Session Expiry Interval）标识符。  
 跟随其后的是用四字节整数表示的以秒为单位的会话过期间隔（Session Expiry Interval）。包含多个会话过期间隔（Session Expiry Interval）将造成协议错误（Protocol Error）。
 
-如果会话过期间隔（Session Expiry Interval）值未指定，则使用CONNECT报文中指定的会话过期时间间隔。服务端使用此属性通知客户端它使用的会话过期时间间隔与客户端在CONNECT中发送的值不同。更详细的关于会话过期时间的描述，请参考3.1.2.11.2节 。
+如果会话过期间隔（Session Expiry Interval）值未指定，则使用CONNECT报文中指定的会话过期时间间隔。服务端使用此属性通知客户端它使用的会话过期时间间隔与客户端在CONNECT中发送的值不同。更详细的关于会话过期时间的描述，请参考3.1.2.11.2节。
 
 ##### 3.2.2.3.3 接收最大值 Receive Maximum
 
@@ -378,7 +378,7 @@ CONNACK报文可变报头中的属性长度，编码为变长字节整数。
 >
 > 响应信息通常被用来传递主题订阅树的一个全局唯一分支，此分支至少在该客户端的会话生命周期内为该客户端所保留。请求客户端和响应客户端的授权需要使用它，所以它通常不能仅仅是一个随机字符串。一般把此分支作为特定客户端的订阅树根节点。通常此信息需要正确配置，以使得服务器能返回信息。使用此机制时，具体的信息一般由服务端来进行统一配置，而非由各个客户端自己配置。
 
-更多关于请求/响应的信息，请参考4.10节 。
+更多关于请求/响应的信息，请参考4.10节。
 
 ##### 3.2.2.3.16 服务端参考 Server Reference
 
