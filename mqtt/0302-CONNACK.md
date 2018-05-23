@@ -424,4 +424,5 @@ CONNACK报文不包含有效载荷。
 
 ### 项目主页
 
-- [MQTT协议中文版](https://github.com/hui6075/mqtt_v5)
+- [MQTT v5.0协议草案中文版](https://github.com/hui6075/mqtt_v5)
+

@@ -26,7 +26,7 @@ MQTT协议5.0版本在3.1.1版本的基础上增加了会话/消息延时功能�
 - [第三章 – MQTT控制报文](mqtt/03-ControlPackets.md)
 	- [3.1 CONNECT – 连接请求](mqtt/0301-CONNECT.md)
 	- [3.2 CONNACK – 确认连接请求](mqtt/0302-CONNACK.md)
-	- [3.3 PUBLISH – 发布消息]
+	- [3.3 PUBLISH – 发布消息](mqtt/0303-PUBLISH.md)
 	- [3.4 PUBACK –发布确认]
 	- [3.5 PUBREC – 发布已接收（QoS 2，第一步）]
 	- [3.6 PUBREL – 发布释放（QoS 2，第二步）]
