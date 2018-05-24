@@ -10,17 +10,17 @@ CONNACK报文由服务端所发送，作为对来自客户端的CONNECT报文的
 
 ##### 图 3-7 – CONNACK 报文固定报头 CONNACK packet Fixed Header
 
-  <table style="text-align:center">
+  <table>
      <tr>
-       <td width=120 align="center"><strong>Bit</strong></td>
-       <td width=60 align="center"><strong>7</strong></td>
-       <td width=60 align="center"><strong>6</strong></td>
-       <td width=60 align="center"><strong>5</strong></td>
-       <td width=60 align="center"><strong>4</strong></td>
-       <td width=60 align="center"><strong>3</strong></td>
-       <td width=60 align="center"><strong>2</strong></td>
-       <td width=60 align="center"><strong>1</strong></td>
-       <td width=60 align="center"><strong>0</strong></td>
+       <th>Bit</th>
+       <th>7</th>
+       <th>6</th>
+       <th>5</th>
+       <th>4</th>
+       <th>3</th>
+       <th>2</th>
+       <th>1</th>
+       <th>0</th>
      </tr>
      <tr>
        <td>byte 1</td>

@@ -10,17 +10,17 @@
 
 ##### 图 3-1 – CONNECT报文的固定报头 CONNECT packet Fixed Header
 
-<table style="text-align:center">
+<table>
    <tr>
-     <td align="center"><strong>Bit</strong></td>
-     <td align="center"><strong>7</strong></td>
-     <td align="center"><strong>6</strong></td>
-     <td align="center"><strong>5</strong></td>
-     <td align="center"><strong>4</strong></td>
-     <td align="center"><strong>3</strong></td>
-     <td align="center"><strong>2</strong></td>
-     <td align="center"><strong>1</strong></td>
-     <td align="center"><strong>0</strong></td>
+     <th>Bit</th>
+     <th>7</th>
+     <th>6</th>
+     <th>5</th>
+     <th>4</th>
+     <th>3</th>
+     <th>2</th>
+     <th>1</th>
+     <th>0</th>
    </tr>
    <tr>
      <td>byte 1</td>
