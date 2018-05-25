@@ -22,7 +22,7 @@ MQTT控制报文由三部分组成，按照下图描述的顺序：
 
 <table>
   <tr>
-    <td width=224 align="center">Fixed Header固定报头，所有控制报文都包含</td>
+    <td width=460 align="center">Fixed Header固定报头，所有控制报文都包含</td>
   </tr>
   <tr>
     <td align="center">Variable Header 可变报头，部分控制报文包含</td>
@@ -419,8 +419,8 @@ PUBACK，PUBREC和PUBREL报文**必须**包含与最初发送的PUBLISH报文相
 
 <table>
   <tr>
-    <th width="260">客户端</th>
-    <th width="260">服务端</th>
+    <th width="275">客户端</th>
+    <th width="275">服务端</th>
   </tr>
   <tr>
     <td align="left" colspan="2">PUBLISH Packet Identifier = 0x1234---></td>
