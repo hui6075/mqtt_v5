@@ -419,20 +419,20 @@ PUBACK，PUBREC和PUBREL报文**必须**包含与最初发送的PUBLISH报文相
 
 <table>
   <tr>
-    <th>客户端</th>
-    <th>服务端</th>
+    <th width="260">客户端</th>
+    <th width="260">服务端</th>
   </tr>
   <tr>
-    <td colspan="2">PUBLISH	Packet Identifier = 0x1234---></td>
+    <td align="left" colspan="2">PUBLISH Packet Identifier = 0x1234---></td>
   </tr>
   <tr>
-    <td colspan="2"><---PUBLISH	Packet Identifier = 0x1234</td>
+    <td align="right" colspan="2"><---PUBLISH	Packet Identifier = 0x1234</td>
   </tr>
   <tr>
-    <td colspan="2">PUBACK	Packet Identifier = 0x1234---></td>
+    <td align="left" colspan="2">PUBACK Packet Identifier = 0x1234---></td>
   </tr>
   <tr>
-    <td colspan="2"><---PUBACK	Packet Identifier = 0x1234</td>
+    <td align="right" colspan="2"><---PUBACK Packet Identifier = 0x1234</td>
   </tr>
 </table>
 
