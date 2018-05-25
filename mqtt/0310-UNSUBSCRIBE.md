@@ -81,7 +81,7 @@ UNSUBSCRIBE报文有效载荷**必须**包含至少一个主题过滤器 \[MQTT-
 <table>
   <tr>
     <th width="120"></th>
-    <th width="280">说明</th>
+    <th width="240">说明</th>
 	<th>7</th>
 	<th>6</th>
 	<th>5</th>

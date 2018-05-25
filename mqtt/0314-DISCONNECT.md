@@ -325,7 +325,7 @@ DISCONNECT报文可变报头中的属性（Properties）的长度被编码为变
 <table>
   <tr>
     <th width="120"></th>
-    <th width="280">说明</th>
+    <th width="240">说明</th>
 	<th>7</th>
 	<th>6</th>
 	<th>5</th>

@@ -277,7 +277,7 @@ PUBLISH报文可变报头中的属性长度被编码为变长字节整数。
 <table>
   <tr>
     <th width=120></th>
-	<th width=280>说明</th>
+	<th width=240>说明</th>
 	<th>7</th>
 	<th>6</th>
 	<th>5</th>

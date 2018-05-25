@@ -58,8 +58,8 @@ CONNECT 报文的可变报头按下列次序包含四个字段：协议名（Pro
 
 <table>
   <tr>
-    <th></th>
-    <th>说明</th>
+    <th width="120"></th>
+    <th width="240">说明</th>
 	<th>7</th>
     <th>6</th>
     <th>5</th>
@@ -160,8 +160,8 @@ CONNECT 报文的可变报头按下列次序包含四个字段：协议名（Pro
 
 <table>
   <tr>
-    <th></th>
-    <th>说明</th>
+    <th width="120"></th>
+    <th width="240">说明</th>
 	<th>7</th>
     <th>6</th>
     <th>5</th>
@@ -493,7 +493,7 @@ CONNECT报文可变报头中的属性（Properties）长度被编码为变长字
 <table>
   <tr>
     <th width=120></th>
-    <th width=280>说明</th>
+    <th width=240>说明</th>
     <th>7</th>
     <th>6</th>
     <th>5</th>

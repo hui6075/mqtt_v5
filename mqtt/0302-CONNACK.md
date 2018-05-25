@@ -12,7 +12,6 @@ CONNACK报文由服务端所发送，作为对来自客户端的CONNECT报文的
 
   <table>
      <tr>
-       <th>Bit</th>
        <th width="95">Bit</th>
        <th width="55">7</th>
        <th width="55">6</th>
