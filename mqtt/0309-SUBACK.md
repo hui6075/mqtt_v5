@@ -10,15 +10,15 @@ SUBACK报文包含一个原因码列表，用于指定授予的最大QoS等级�
 
 <table style="text-align:center">
    <tr>
-     <th>Bit</th>
-     <th>7</th>
-     <th>6</th>
-     <th>5</th>
-     <th>4</th>
-     <th>3</th>
-     <th>2</th>
-     <th>1</th>
-     <th>0</th>
+     <th width="95">Bit</th>
+     <th width="55">7</th>
+     <th width="55">6</th>
+     <th width="55">5</th>
+     <th width="55">4</th>
+     <th width="55">3</th>
+     <th width="55">2</th>
+     <th width="55">1</th>
+     <th width="55">0</th>
    </tr>
    <tr>
      <td>byte 1</td>

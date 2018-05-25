@@ -8,15 +8,15 @@
 
 <table style="text-align:center">
    <tr>
-     <th>Bit</th>
-     <th>7</th>
-     <th>6</th>
-     <th>5</th>
-     <th>4</th>
-     <th>3</th>
-     <th>2</th>
-     <th>1</th>
-     <th>0</th>
+     <th width="95">Bit</th>
+     <th width="55">7</th>
+     <th width="55">6</th>
+     <th width="55">5</th>
+     <th width="55">4</th>
+     <th width="55">3</th>
+     <th width="55">2</th>
+     <th width="55">1</th>
+     <th width="55">0</th>
    </tr>
    <tr>
      <td>byte 1</td>
@@ -80,8 +80,8 @@ UNSUBSCRIBE报文有效载荷**必须**包含至少一个主题过滤器 \[MQTT-
 
 <table>
   <tr>
-    <th></th>
-    <th>说明</th>
+    <th width="120"></th>
+    <th width="280">说明</th>
 	<th>7</th>
 	<th>6</th>
 	<th>5</th>

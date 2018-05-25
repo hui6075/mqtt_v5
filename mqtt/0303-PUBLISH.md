@@ -8,15 +8,15 @@ PUBLISH报文是指从客户端向服务端或者服务端向客户端传输一�
 
 <table>
    <tr>
-     <th>Bit</th>
-     <th>7</th>
-     <th>6</th>
-     <th>5</th>
-     <th>4</th>
-     <th>3</th>
-     <th>2</th>
-     <th>1</th>
-     <th>0</th>
+     <th width="95">Bit</th>
+     <th width="55">7</th>
+     <th width="55">6</th>
+     <th width="55">5</th>
+     <th width="55">4</th>
+     <th width="55">3</th>
+     <th width="55">2</th>
+     <th width="55">1</th>
+     <th width="55">0</th>
    </tr>
    <tr>
      <td>byte 1</td>
@@ -276,8 +276,8 @@ PUBLISH报文可变报头中的属性长度被编码为变长字节整数。
 
 <table>
   <tr>
-    <th width=100></th>
-	<th width=250>说明</th>
+    <th width=120></th>
+	<th width=280>说明</th>
 	<th>7</th>
 	<th>6</th>
 	<th>5</th>

@@ -10,15 +10,15 @@
 
 <table style="text-align:center">
    <tr>
-     <th>Bit</th>
-     <th>7</th>
-     <th>6</th>
-     <th>5</th>
-     <th>4</th>
-     <th>3</th>
-     <th>2</th>
-     <th>1</th>
-     <th>0</th>
+     <th width="95">Bit</th>
+     <th width="55">7</th>
+     <th width="55">6</th>
+     <th width="55">5</th>
+     <th width="55">4</th>
+     <th width="55">3</th>
+     <th width="55">2</th>
+     <th width="55">1</th>
+     <th width="55">0</th>
    </tr>
    <tr>
      <td>byte 1</td>
@@ -40,6 +40,17 @@
      <td>byte 2</td>
      <td colspan="8" align="center">剩余长度</td>
    </tr>
+      <tr>
+       <td></td>
+       <td align="center">0</td>
+       <td align="center">0</td>
+       <td align="center">0</td>
+       <td align="center">0</td>
+       <td align="center">0</td>
+       <td align="center">0</td>
+       <td align="center">0</td>
+       <td align="center">0</td>
+     </tr>
  </table>
 
 ### 3.13.2 PINGRESP 可变报头 PINGRESP Variable Header
