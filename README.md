@@ -37,14 +37,14 @@ MQTT协议5.0版本在3.1.1版本的基础上增加了会话/消息延时功能�
 	- [3.11 UNSUBACK – 取消订阅确认](mqtt/0311-UNSUBACK.md)
 	- [3.12 PINGREQ – PING请求](mqtt/0312-PINGREQ.md)
 	- [3.13 PINGRESP – PING响应](mqtt/0313-PINGRESP.md)
-	- [3.14 DISCONNECT – 断开连接](mqtt/0313-PINGRESP.md)
-	- [3.15 AUTH – 交换认证](mqtt/0313-PINGRESP.md)
+	- [3.14 DISCONNECT – 断开连接](mqtt/0314-DISCONNECT.md)
+	- [3.15 AUTH – 交换认证](mqtt/0315-AUTH.md)
 - [第四章 – 操作行为](mqtt/04-OperationalBehavior.md)
 - [第五章 – 安全（非规范）](mqtt/05-Security.md)
 - [第六章 – 使用WebSocket作为网络层](mqtt/06-WebSocket.md)
 - [第七章 – 一致性](mqtt/07-Conformance.md)
-- [附录B - 强制性规范声明（非规范）](mqtt/0314-DISCONNECT.md)
-- [附录C - MQTT v5.0新特性总结（非规范）](mqtt/0315-AUTH.md)
+- [附录B - 强制性规范声明（非规范）](mqtt/08-AppendixB.md)
+- [附录C - MQTT v5.0新特性总结（非规范）](mqtt/09-AppendixC.md)
 
 ------
 
