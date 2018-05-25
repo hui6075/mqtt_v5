@@ -62,8 +62,8 @@ DISCONNECT报文的可变报头按顺序包含以下字段：断开原因码，�
 <table>
   <tr>
     <th>值</th>
-    <th>16进制</th>
-	<th>原因码名称</th>
+    <th width="80">16进制</th>
+	<th width="150">原因码名称</th>
 	<th>发送端</th>
 	<th>说明</th>
   </tr>
