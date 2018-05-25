@@ -40,8 +40,7 @@ PUBCOMP报文是对PUBREL报文的响应。它是QoS 2等级协议交换的第�
    </tr>
  </table>
 
-**剩余长度字段**
-
+**剩余长度字段**  
 表示可变报头的长度，编码为变长字节整数。
 
 ### 3.7.2 PUBCOMP 可变报头 PUBCOMP Variable Header

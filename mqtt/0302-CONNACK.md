@@ -55,9 +55,8 @@ CONNACK报文由服务端所发送，作为对来自客户端的CONNECT报文的
      </tr>
    </table>
 
-**剩余长度字段**
-
-表示可变报头的长度。对于CONNACK报文这个值等于2。
+**剩余长度字段**  
+用变长字节整数来编码，表示可变报头的长度。
 
 ### 3.2.2 CONNACK 可变报头 CONNACK Variable Header
 

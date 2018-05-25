@@ -40,8 +40,7 @@ PUBREC报文是对QoS等级2的PUBLISH报文的响应。它是QoS 2等级协议�
    </tr>
  </table>
 
-**剩余长度字段**
-
+**剩余长度字段**  
 表示可变报头的长度，用变长字节整数编码。
 
 ### 3.5.2 PUBREC 可变报头 PUBREC Variable Header
