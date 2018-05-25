@@ -51,15 +51,15 @@ PUBREC可变报头按顺序包含以下字段：所确认的PUBLISH报文标识�
 
 <table style="text-align:center">
    <tr>
-     <td align="center"><strong>Bit</strong></td>
-     <td align="center"><strong>7</strong></td>
-     <td align="center"><strong>6</strong></td>
-     <td align="center"><strong>5</strong></td>
-     <td align="center"><strong>4</strong></td>
-     <td align="center"><strong>3</strong></td>
-     <td align="center"><strong>2</strong></td>
-     <td align="center"><strong>1</strong></td>
-     <td align="center"><strong>0</strong></td>
+     <th width="95">Bit</th>
+     <th width="55">7</th>
+     <th width="55">6</th>
+     <th width="55">5</th>
+     <th width="55">4</th>
+     <th width="55">3</th>
+     <th width="55">2</th>
+     <th width="55">1</th>
+     <th width="55">0</th>
    </tr>
    <tr>
      <td>byte 1</td>
