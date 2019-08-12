@@ -52,8 +52,7 @@ Rahul Gupta (<rahul.gupta@us.ibm.com>), [IBM](http://www.ibm.com/)
 
 #### 本规范代替：
 
--   MQTT协议3.1.1版本。编辑是Andrew Banks和Rahul Gupta，发布于2014年10月29日，OASIS标准： <
-http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html>.
+-   MQTT协议3.1.1版本。编辑是Andrew Banks和Rahul Gupta，发布于2014年10月29日，OASIS标准： <http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html>.
 
 #### 本规范与此有关：
 
